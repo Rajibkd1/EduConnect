@@ -12,11 +12,12 @@ return new class extends Migration
     public function up()
     {
         Schema::create('guardians', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
-            $table->string('phone')->nullable();
-            $table->string('address')->nullable();
-        });
+        $table->id();
+        $table->string('name');
+        $table->string('email')->unique();
+        $table->string('password');
+    });
+
     }
 
 

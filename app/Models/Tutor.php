@@ -6,11 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Tutor extends Model
 {
-    protected $fillable = ['id', 'bio', 'qualifications', 'experience_years', 'rating'];
+    protected $fillable = ['user_id', 'bio', 'qualifications', 'experience_years', 'rating'];
+    public $timestamps = false;
 
     public function user()
     {
-        return $this->belongsTo(User::class, 'id');
+        return $this->belongsTo(User::class, 'user_id');
     }
 
     public function subjects()

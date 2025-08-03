@@ -6,11 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Student extends Model
 {
-    protected $fillable = ['id', 'educational_level'];
+    protected $fillable = ['user_id', 'educational_level'];
+    public $timestamps = false;
 
     public function user()
     {
-        return $this->belongsTo(User::class, 'id');
+        return $this->belongsTo(User::class, 'user_id');
     }
 
     public function sessions()

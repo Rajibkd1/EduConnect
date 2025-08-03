@@ -1,15 +1,17 @@
 <?php
+
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
 class Guardian extends Model
 {
-    protected $fillable = ['id', 'phone', 'address'];
+    protected $fillable = ['user_id', 'phone', 'address'];
+    public $timestamps = false;
 
     public function user()
     {
-        return $this->belongsTo(User::class, 'id');
+        return $this->belongsTo(User::class, 'user_id');
     }
 
     public function students()

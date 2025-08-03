@@ -12,13 +12,13 @@ return new class extends Migration
     public function up()
     {
         Schema::create('tutors', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
-            $table->text('bio')->nullable();
-            $table->string('qualifications')->nullable();
-            $table->integer('experience_years')->nullable();
-            $table->float('rating')->default(0);
-        });
+        $table->id();
+        $table->string('name');
+        $table->string('email')->unique();
+        $table->string('password');
+        $table->string('rating')->default(0);
+    });
+
     }
 
 
