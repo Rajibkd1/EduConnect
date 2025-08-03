@@ -17,7 +17,6 @@
 [![Laravel](https://img.shields.io/badge/Laravel-12.x-FF2D20?style=for-the-badge&logo=laravel&logoColor=white&labelColor=1a1a1a)](https://laravel.com)
 [![PHP](https://img.shields.io/badge/PHP-8.3+-777BB4?style=for-the-badge&logo=php&logoColor=white&labelColor=1a1a1a)](https://php.net)
 [![Status](https://img.shields.io/badge/Status-In%20Development-FFA500?style=for-the-badge&labelColor=1a1a1a)](https://github.com/Rajibkd1/EduConnect)
-[![License](https://img.shields.io/badge/License-MIT-00D26A?style=for-the-badge&labelColor=1a1a1a)](LICENSE)
 
 <img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif" width="100%">
 
@@ -106,6 +105,46 @@ class EduConnect {
 
 <div align="center">
 
+## 🏗️ **Development Status**
+
+### 🚧 **Current Phase: Foundation & Core Development** 🚧
+
+</div>
+
+✅
+Database Architecture
+Complete
+
+✅
+Model Relationships
+Complete
+
+✅
+Laravel 12 Migration
+Complete
+
+⏳
+Authentication System
+In Progress
+
+⏳
+API Development
+In Progress
+
+📋
+Frontend Integration
+Planned
+
+📋
+Testing & Deployment
+Planned
+
+**🎯 Expected Beta Release:** _Q2 2025_
+
+---
+
+<div align="center">
+
 ## 🛠️ **Tech Stack**
 
 <img src="https://skillicons.dev/icons?i=laravel,php,mysql,redis,git&theme=dark" />
@@ -177,9 +216,62 @@ php artisan reverb:start
 
 <div align="center">
 
+## 📊 **Database Architecture**
 
 </div>
 
+🗃️ View Database Schema
+
+```
+erDiagram
+    USERS ||--|| STUDENTS : "has"
+    USERS ||--|| TUTORS : "has"
+    USERS ||--|| GUARDIANS : "has"
+    USERS ||--|| ADMINS : "has"
+    USERS ||--|| SUPPORT_STAFF : "has"
+    USERS ||--|| DEVELOPERS : "has"
+    TUTORS ||--o{ SESSIONS : "conducts"
+    STUDENTS ||--o{ SESSIONS : "attends"
+    SESSIONS ||--o{ MESSAGES : "contains"
+    TUTORS }o--o{ SUBJECTS : "teaches"
+    SESSIONS ||--o{ FEEDBACK : "receives"
+    GUARDIANS }o--o{ STUDENTS : "monitors"
+    USERS ||--o{ NOTIFICATIONS : "receives"
+    STUDENTS ||--o{ SESSION_REQUESTS : "makes"
+    TUTORS ||--o{ SESSION_REQUESTS : "receives"
+```
+
+**Core Tables:** Users, Students, Tutors, Guardians, Admins, Support Staff, Developers, Sessions, Messages, Feedback, Notifications, Session Requests, Subjects
+
+---
+
+## 🆕 **Laravel 12 Specific Features**
+
+### ⚡ **Enhanced Performance**
+
+-   Improved query performance with Laravel 12 optimizations
+-   Better memory management for large datasets
+-   Enhanced caching mechanisms
+
+### 🔐 **Security Improvements**
+
+-   Advanced authentication with Laravel Fortify
+-   Enhanced CSRF protection
+-   Improved rate limiting
+
+### 🌐 **Real-time Capabilities**
+
+-   Laravel Reverb for WebSocket connections
+-   Real-time notifications and messaging
+-   Live session updates
+
+### 🧪 **Testing Framework**
+
+-   Pest 3.x integration
+-   Enhanced testing utilities
+-   Better mocking capabilities
+
+---
 
 ## 🤝 **Contributing**
 
@@ -276,12 +368,6 @@ REVERB_SCHEME=http
 [![Email](https://img.shields.io/badge/Email-Contact-EA4335?style=for-the-badge&logo=gmail&logoColor=white)](mailto:rajib2516@student.nstu.edu.bd)
 
 </div>
-
----
-
-## 📜 **License**
-
-This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) file for details.
 
 <div align="center">
 
