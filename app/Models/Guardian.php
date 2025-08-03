@@ -6,8 +6,20 @@ use Illuminate\Database\Eloquent\Model;
 
 class Guardian extends Model
 {
-    protected $fillable = ['user_id', 'phone', 'address'];
-    public $timestamps = false;
+    protected $fillable = [
+        'user_id', 
+        'profile_image', 
+        'child_name', 
+        'child_birthdate', 
+        'current_class', 
+        'school_college_name', 
+        'address', 
+        'phone_number'
+    ];
+
+    protected $casts = [
+        'child_birthdate' => 'date',
+    ];
 
     public function user()
     {

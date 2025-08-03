@@ -6,8 +6,26 @@ use Illuminate\Database\Eloquent\Model;
 
 class Tutor extends Model
 {
-    protected $fillable = ['user_id', 'bio', 'qualifications', 'experience_years', 'rating'];
-    public $timestamps = false;
+    protected $fillable = [
+        'user_id', 
+        'name', 
+        'profile_image', 
+        'phone_number', 
+        'university_name', 
+        'university_id', 
+        'department', 
+        'semester', 
+        'address', 
+        'university_id_image', 
+        'bio', 
+        'qualifications', 
+        'experience_years', 
+        'rating'
+    ];
+
+    protected $casts = [
+        'rating' => 'decimal:2',
+    ];
 
     public function user()
     {

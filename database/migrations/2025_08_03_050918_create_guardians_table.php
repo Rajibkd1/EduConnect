@@ -12,12 +12,19 @@ return new class extends Migration
     public function up()
     {
         Schema::create('guardians', function (Blueprint $table) {
-        $table->id();
-        $table->string('name');
-        $table->string('email')->unique();
-        $table->string('password');
-    });
+            $table->id();
+            $table->unsignedBigInteger('user_id')->unique();
+            $table->string('profile_image')->nullable();
+            $table->string('child_name')->nullable();
+            $table->date('child_birthdate')->nullable();
+            $table->string('current_class')->nullable();
+            $table->string('school_college_name')->nullable();
+            $table->text('address')->nullable();
+            $table->string('phone_number')->nullable();
+            $table->timestamps();
 
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+        });
     }
 
 

@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\SignupController;
 use App\Http\Controllers\LoginController;
 
@@ -21,9 +22,67 @@ Route::get('/login', function () {
 Route::post('/login', [LoginController::class, 'login'])->name('login.perform');
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
+// Test route to simulate authenticated user for navigation testing
+Route::get('/test-navigation', function () {
+    // Create a fake user for testing navigation with all required attributes
+    $fakeUser = new \App\Models\User();
+    $fakeUser->id = 1;
+    $fakeUser->name = 'Rajib Kumar Dhar';
+    $fakeUser->email = 'rajibkd@gmail.com';
+    $fakeUser->user_type = 'student';
+    $fakeUser->created_at = now();
+    $fakeUser->updated_at = now();
+    
+    // Set the attributes array to make the model work properly
+    $fakeUser->setRawAttributes([
+        'id' => 1,
+        'name' => 'Rajib Kumar Dhar',
+        'email' => 'rajibkd@gmail.com',
+        'user_type' => 'student',
+        'created_at' => now(),
+        'updated_at' => now(),
+    ]);
+    
+    // Mark the model as existing
+    $fakeUser->exists = true;
+    
+    // Temporarily authenticate this fake user
+    Auth::login($fakeUser);
+    
+    // Redirect to dashboard to ensure proper authentication state
+    return redirect()->route('dashboard');
+})->name('test-navigation');
+
 // Dashboard route - protected by auth middleware
 Route::middleware('auth')->group(function () {
     Route::get('/dashboard', function () {
         return view('dashboard', ['user' => auth()->user()]);
     })->name('dashboard');
+
+    // Profile routes
+    Route::get('/profile', function () {
+        return view('profile', ['user' => auth()->user()]);
+    })->name('profile');
+
+    // Student and Guardian routes
+    Route::get('/search-tutor', function () {
+        return view('search-tutor', ['user' => auth()->user()]);
+    })->name('search-tutor');
+
+    Route::get('/sessions', function () {
+        return view('sessions', ['user' => auth()->user()]);
+    })->name('sessions');
+
+    Route::get('/feedback', function () {
+        return view('feedback', ['user' => auth()->user()]);
+    })->name('feedback');
+
+    // Tutor routes
+    Route::get('/session-requests', function () {
+        return view('session-requests', ['user' => auth()->user()]);
+    })->name('session-requests');
+
+    Route::get('/create-sessions', function () {
+        return view('create-sessions', ['user' => auth()->user()]);
+    })->name('create-sessions');
 });

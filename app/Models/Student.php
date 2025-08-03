@@ -6,8 +6,20 @@ use Illuminate\Database\Eloquent\Model;
 
 class Student extends Model
 {
-    protected $fillable = ['user_id', 'educational_level'];
-    public $timestamps = false;
+    protected $fillable = [
+        'user_id',
+        'educational_level',
+        'profile_image',
+        'birth_date',
+        'current_study_class',
+        'school_college_name',
+        'address',
+        'phone_number'
+    ];
+
+    protected $casts = [
+        'birth_date' => 'date',
+    ];
 
     public function user()
     {
