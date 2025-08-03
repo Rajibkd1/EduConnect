@@ -15,6 +15,39 @@
             </button>
         </div>
 
+        <!-- Mobile User Info -->
+        <div class="p-4 border-b border-gray-200">
+            <div class="flex items-center">
+                @php
+                    $user = auth()->user();
+                    $profile = null;
+                    if ($user->user_type === 'student') {
+                        $profile = $user->student;
+                    } elseif ($user->user_type === 'tutor') {
+                        $profile = $user->tutor;
+                    } elseif ($user->user_type === 'guardian') {
+                        $profile = $user->guardian;
+                    }
+                @endphp
+                
+                @if($profile && $profile->profile_image)
+                    <img src="{{ asset('storage/' . $profile->profile_image) }}" alt="Profile Picture" 
+                         class="w-10 h-10 rounded-full object-cover border-2 border-indigo-200">
+                @else
+                    <div class="bg-indigo-100 rounded-full p-2">
+                        <svg class="w-6 h-6 text-indigo-600" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
+                                clip-rule="evenodd"></path>
+                        </svg>
+                    </div>
+                @endif
+                <div class="ml-3">
+                    <p class="text-sm font-medium text-gray-900">{{ auth()->user()->name }}</p>
+                    <p class="text-xs text-gray-500">{{ ucfirst(auth()->user()->user_type) }}</p>
+                </div>
+            </div>
+        </div>
+
         <!-- Mobile Navigation Items -->
         <nav class="mt-6 px-3">
             @foreach (auth()->user()->getNavigationItems() as $item)
@@ -54,12 +87,29 @@
         <!-- User Info -->
         <div class="p-4 border-b border-gray-200">
             <div class="flex items-center">
-                <div class="bg-indigo-100 rounded-full p-2">
-                    <svg class="w-6 h-6 text-indigo-600" fill="currentColor" viewBox="0 0 20 20">
-                        <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
-                            clip-rule="evenodd"></path>
-                    </svg>
-                </div>
+                @php
+                    $user = auth()->user();
+                    $profile = null;
+                    if ($user->user_type === 'student') {
+                        $profile = $user->student;
+                    } elseif ($user->user_type === 'tutor') {
+                        $profile = $user->tutor;
+                    } elseif ($user->user_type === 'guardian') {
+                        $profile = $user->guardian;
+                    }
+                @endphp
+                
+                @if($profile && $profile->profile_image)
+                    <img src="{{ asset('storage/' . $profile->profile_image) }}" alt="Profile Picture" 
+                         class="w-10 h-10 rounded-full object-cover border-2 border-indigo-200">
+                @else
+                    <div class="bg-indigo-100 rounded-full p-2">
+                        <svg class="w-6 h-6 text-indigo-600" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
+                                clip-rule="evenodd"></path>
+                        </svg>
+                    </div>
+                @endif
                 <div class="ml-3">
                     <p class="text-sm font-medium text-gray-900">{{ auth()->user()->name }}</p>
                     <p class="text-xs text-gray-500">{{ ucfirst(auth()->user()->user_type) }}</p>

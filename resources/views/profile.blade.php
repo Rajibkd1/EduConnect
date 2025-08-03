@@ -1,146 +1,403 @@
 @extends('layouts.app')
 
-@section('title', 'Profile - EduConnect')
+@section('title', 'My Profile - EduConnect')
 
 @section('content')
-    <div class="bg-white rounded-lg shadow">
-        <div class="px-6 py-4 border-b border-gray-200">
-            <div class="flex items-center justify-between">
-                <div>
-                    <h1 class="text-2xl font-bold text-gray-900">My Profile</h1>
-                    <p class="text-gray-600">Manage your account information and preferences</p>
+    <div class="min-h-screen bg-gray-50">
+        <!-- Header -->
+        <div class="bg-white border-b border-gray-200">
+            <div class="px-2 sm:px-4 lg:px-6 py-4 lg:py-6">
+                    <div class="flex flex-col sm:flex-row sm:items-center space-y-4 sm:space-y-0 sm:space-x-6">
+                        @php
+                            $user = auth()->user();
+                            $profile = null;
+                            if ($user->user_type === 'student') {
+                                $profile = $user->student;
+                            } elseif ($user->user_type === 'tutor') {
+                                $profile = $user->tutor;
+                            } elseif ($user->user_type === 'guardian') {
+                                $profile = $user->guardian;
+                            }
+                        @endphp
+
+                        <!-- Profile Image and User Info Container -->
+                        <div class="flex items-center space-x-4 flex-1">
+                            <!-- Profile Image -->
+                            <div class="relative flex-shrink-0">
+                                @if ($profile && $profile->profile_image)
+                                    <img src="{{ asset('storage/' . $profile->profile_image) }}" alt="Profile Picture"
+                                        class="w-20 h-20 sm:w-24 sm:h-24 rounded-full object-cover border-4 border-white shadow-lg">
+                                @else
+                                    <div
+                                        class="w-20 h-20 sm:w-24 sm:h-24 rounded-full bg-gray-100 border-4 border-white shadow-lg flex items-center justify-center">
+                                        <svg class="w-10 h-10 sm:w-12 sm:h-12 text-gray-400" fill="currentColor"
+                                            viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd"
+                                                d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd">
+                                            </path>
+                                        </svg>
+                                    </div>
+                                @endif
+                            </div>
+
+                            <!-- User Info -->
+                            <div class="flex-1 min-w-0">
+                                <h1 class="text-2xl sm:text-3xl font-bold text-gray-900 truncate">{{ $user->name }}</h1>
+                                <p class="text-base sm:text-lg text-gray-600 mt-1">{{ ucfirst($user->user_type) }}</p>
+                                <p class="text-xs sm:text-sm text-gray-500 mt-1 sm:mt-2">Member since
+                                    {{ $user->created_at->format('F j, Y') }}</p>
+                            </div>
+                        </div>
+
+                        <!-- Edit Button -->
+                        <div class="flex-shrink-0 w-full sm:w-auto">
+                            <button id="edit-profile-btn"
+                                class="w-full sm:w-auto inline-flex items-center justify-center px-4 py-2 border border-gray-300 rounded-lg text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors">
+                                <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z">
+                                    </path>
+                                </svg>
+                                Edit Profile
+                            </button>
+
+                            <button id="cancel-edit-btn" style="display: none;"
+                                class="w-full sm:w-auto inline-flex items-center justify-center px-4 py-2 border border-gray-300 rounded-lg text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 transition-colors">
+                                <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M6 18L18 6M6 6l12 12"></path>
+                                </svg>
+                                Cancel
+                            </button>
+                        </div>
+                    </div>
                 </div>
-                <button id="editToggle" class="px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors">
-                    <svg class="w-4 h-4 inline mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
-                    </svg>
-                    Edit Profile
-                </button>
             </div>
-        </div>
-        
-        <div class="p-6">
-            <!-- Profile Information -->
-            <div class="max-w-4xl">
-                <!-- Profile Header -->
-                <div class="bg-gradient-to-r from-indigo-500 to-purple-600 rounded-lg p-6 text-white mb-8">
-                    <div class="flex items-center">
-                        <div class="bg-white bg-opacity-20 rounded-full p-4">
-                            <svg class="w-16 h-16" fill="currentColor" viewBox="0 0 20 20">
-                                <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path>
+
+            <!-- Success Message -->
+            @if (session('success'))
+                <div class="px-2 sm:px-4 lg:px-6 pt-6">
+                    <div class="bg-green-50 border border-green-200 rounded-lg p-4">
+                        <div class="flex">
+                            <svg class="w-5 h-5 text-green-400" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd"
+                                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                    clip-rule="evenodd"></path>
                             </svg>
-                        </div>
-                        <div class="ml-6">
-                            <h2 class="text-2xl font-bold">{{ auth()->user()->name }}</h2>
-                            <p class="text-indigo-100 text-lg">{{ ucfirst(auth()->user()->user_type) }}</p>
-                            <p class="text-indigo-200 text-sm">Member since {{ auth()->user()->created_at->format('F j, Y') }}</p>
+                            <p class="ml-3 text-sm font-medium text-green-800">{{ session('success') }}</p>
                         </div>
                     </div>
                 </div>
-                
-                <!-- Profile Form -->
-                <form id="profileForm" class="space-y-8">
+            @endif
+
+            <!-- Profile Form -->
+            <div class="px-2 sm:px-4 lg:px-6 py-3">
+                <form id="profile-form" method="POST" action="{{ route('profile.update') }}" enctype="multipart/form-data">
                     @csrf
-                    
-                    <!-- Basic Information -->
-                    <div class="bg-gray-50 rounded-lg p-6">
-                        <h3 class="text-lg font-semibold text-gray-900 mb-4">Basic Information</h3>
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                            <div>
-                                <label for="name" class="block text-sm font-medium text-gray-700 mb-2">Full Name *</label>
-                                <input type="text" id="name" name="name" value="{{ auth()->user()->name }}" 
-                                       class="profile-input w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500 bg-white" 
-                                       readonly>
-                            </div>
-                            
-                            <div>
-                                <label for="email" class="block text-sm font-medium text-gray-700 mb-2">Email Address *</label>
-                                <input type="email" id="email" name="email" value="{{ auth()->user()->email }}" 
-                                       class="profile-input w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500 bg-white" 
-                                       readonly>
-                            </div>
-                            
-                            <div>
-                                <label for="phone" class="block text-sm font-medium text-gray-700 mb-2">Phone Number</label>
-                                <input type="tel" id="phone" name="phone" value="" 
-                                       class="profile-input w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500 bg-white" 
-                                       placeholder="+1 (555) 123-4567" readonly>
-                            </div>
-                            
-                            <div>
-                                <label for="user_type" class="block text-sm font-medium text-gray-700 mb-2">Account Type</label>
-                                <input type="text" id="user_type" value="{{ ucfirst(auth()->user()->user_type) }}" 
-                                       class="w-full px-3 py-2 border border-gray-300 rounded-lg bg-gray-100 text-gray-600" readonly>
-                            </div>
+                    @method('PUT')
+
+                    <!-- Basic Information Card -->
+                    <div class="bg-white rounded-lg shadow-sm border border-gray-200 mb-4">
+                        <div class="px-4 py-3 border-b border-gray-200">
+                            <h2 class="text-lg font-semibold text-gray-900">Basic Information</h2>
+                            <p class="text-sm text-gray-600 mt-1">Your account details and contact information</p>
                         </div>
-                    </div>
-                    
-                    <!-- Additional Information -->
-                    <div class="bg-gray-50 rounded-lg p-6">
-                        <h3 class="text-lg font-semibold text-gray-900 mb-4">Additional Information</h3>
-                        <div class="space-y-6">
+
+                        <div class="p-4 space-y-4">
+                            <!-- Profile Picture - Left Positioned -->
                             <div>
-                                <label for="bio" class="block text-sm font-medium text-gray-700 mb-2">
-                                    @if(auth()->user()->isTutor())
-                                        About Me (Tell students about your teaching experience)
-                                    @else
-                                        About Me
-                                    @endif
+                                <label for="profile_image" class="block text-sm font-medium text-gray-700 mb-2">
+                                    Profile Picture
                                 </label>
-                                <textarea id="bio" name="bio" rows="4" 
-                                          class="profile-input w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500 bg-white"
-                                          placeholder="Tell us about yourself..." readonly></textarea>
+                                <input type="file" id="profile_image" name="profile_image" accept="image/*" disabled
+                                    class="w-full px-3 py-2 border border-gray-300 rounded-lg text-gray-900 bg-gray-50 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors file:mr-4 file:py-1 file:px-3 file:rounded-lg file:border-0 file:text-sm file:font-medium file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100">
+                                <p class="text-xs text-gray-500 mt-1">Upload a profile picture (JPG, PNG, GIF - Max 2MB)</p>
                             </div>
-                            
-                            @if(auth()->user()->isTutor())
-                                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                    <div>
-                                        <label for="subjects" class="block text-sm font-medium text-gray-700 mb-2">Subjects I Teach</label>
-                                        <input type="text" id="subjects" name="subjects" 
-                                               class="profile-input w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500 bg-white"
-                                               placeholder="Mathematics, Physics, Chemistry..." readonly>
-                                    </div>
-                                    
-                                    <div>
-                                        <label for="experience" class="block text-sm font-medium text-gray-700 mb-2">Years of Experience</label>
-                                        <select id="experience" name="experience" 
-                                                class="profile-input w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500 bg-white" 
-                                                disabled>
-                                            <option value="">Select experience</option>
-                                            <option value="1">Less than 1 year</option>
-                                            <option value="2">1-2 years</option>
-                                            <option value="5">3-5 years</option>
-                                            <option value="10">5-10 years</option>
-                                            <option value="10+">More than 10 years</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                
-                                <div>
-                                    <label for="hourly_rate" class="block text-sm font-medium text-gray-700 mb-2">Hourly Rate ($)</label>
-                                    <input type="number" id="hourly_rate" name="hourly_rate" min="0" step="0.01" 
-                                           class="profile-input w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500 bg-white"
-                                           placeholder="35.00" readonly>
-                                </div>
-                            @endif
-                            
+
+                            <!-- Full Name - Full Width -->
                             <div>
-                                <label for="location" class="block text-sm font-medium text-gray-700 mb-2">Location</label>
-                                <input type="text" id="location" name="location" 
-                                       class="profile-input w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500 bg-white"
-                                       placeholder="City, State" readonly>
+                                <label for="name" class="block text-sm font-medium text-gray-700 mb-2">
+                                    Full Name <span class="text-red-500">*</span>
+                                </label>
+                                <input type="text" id="name" name="name" value="{{ $user->name }}" readonly
+                                    class="w-full px-3 py-2 border border-gray-300 rounded-lg text-gray-900 bg-gray-50 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors">
+                            </div>
+
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <!-- Phone Number - Left Position (Key Field) -->
+                                <div>
+                                    <label for="phone_number" class="block text-sm font-medium text-gray-700 mb-2">
+                                        Phone Number
+                                    </label>
+                                    <input type="tel" id="phone_number" name="phone_number"
+                                        value="{{ $profile->phone_number ?? '' }}" readonly
+                                        placeholder="Enter your phone number"
+                                        class="w-full px-3 py-2 border border-gray-300 rounded-lg text-gray-900 bg-gray-50 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors">
+                                </div>
+
+                                <!-- Account Type - Right Position -->
+                                <div>
+                                    <label for="user_type" class="block text-sm font-medium text-gray-700 mb-2">
+                                        Account Type
+                                    </label>
+                                    <input type="text" id="user_type" value="{{ ucfirst($user->user_type) }}" readonly
+                                        class="w-full px-3 py-2 border border-gray-300 rounded-lg text-gray-500 bg-gray-100 cursor-not-allowed">
+                                </div>
+                            </div>
+
+                            <!-- Email Address (Non-editable) - Full Width -->
+                            <div>
+                                <label for="email" class="block text-sm font-medium text-gray-700 mb-2">
+                                    Email Address
+                                </label>
+                                <div class="relative">
+                                    <input type="email" id="email" name="email" value="{{ $user->email }}" readonly
+                                        class="w-full px-3 py-2 border border-gray-300 rounded-lg text-gray-500 bg-gray-100 cursor-not-allowed">
+                                    <div class="absolute inset-y-0 right-0 pr-3 flex items-center">
+                                        <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor"
+                                            viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z">
+                                            </path>
+                                        </svg>
+                                    </div>
+                                </div>
+                                <p class="text-xs text-gray-500 mt-1">Email cannot be changed for security reasons</p>
                             </div>
                         </div>
                     </div>
-                    
+
+                    <!-- User Type Specific Information -->
+                    @if ($user->user_type === 'student')
+                        <div class="bg-white rounded-lg shadow-sm border border-gray-200 mb-4">
+                            <div class="px-4 py-3 border-b border-gray-200">
+                                <h2 class="text-lg font-semibold text-gray-900">Student Information</h2>
+                                <p class="text-sm text-gray-600 mt-1">Your academic details and educational background</p>
+                            </div>
+
+                            <div class="p-4 space-y-4">
+                                <!-- Left Column Priority Fields -->
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                    <!-- Birth Date - Left Position (Key Field) -->
+                                    <div>
+                                        <label for="birth_date" class="block text-sm font-medium text-gray-700 mb-2">
+                                            Birth Date
+                                        </label>
+                                        <input type="date" id="birth_date" name="birth_date"
+                                            value="{{ $profile->birth_date ?? '' }}" readonly
+                                            class="w-full px-3 py-2 border border-gray-300 rounded-lg text-gray-900 bg-gray-50 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors">
+                                    </div>
+
+                                    <!-- Educational Level - Right Position -->
+                                    <div>
+                                        <label for="educational_level"
+                                            class="block text-sm font-medium text-gray-700 mb-2">
+                                            Educational Level
+                                        </label>
+                                        <input type="text" id="educational_level" name="educational_level"
+                                            value="{{ $profile->educational_level ?? '' }}" readonly
+                                            placeholder="e.g., High School, Undergraduate, etc."
+                                            class="w-full px-3 py-2 border border-gray-300 rounded-lg text-gray-900 bg-gray-50 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors">
+                                    </div>
+                                </div>
+
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                    <!-- Current Study Class - Left Position (Key Field) -->
+                                    <div>
+                                        <label for="current_study_class"
+                                            class="block text-sm font-medium text-gray-700 mb-2">
+                                            Current Study Class
+                                        </label>
+                                        <input type="text" id="current_study_class" name="current_study_class"
+                                            value="{{ $profile->current_study_class ?? '' }}" readonly
+                                            placeholder="e.g., Grade 12, Year 2, etc."
+                                            class="w-full px-3 py-2 border border-gray-300 rounded-lg text-gray-900 bg-gray-50 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors">
+                                    </div>
+
+                                    <!-- School/College Name - Left Position (Key Field) -->
+                                    <div>
+                                        <label for="school_college_name"
+                                            class="block text-sm font-medium text-gray-700 mb-2">
+                                            School/College Name
+                                        </label>
+                                        <input type="text" id="school_college_name" name="school_college_name"
+                                            value="{{ $profile->school_college_name ?? '' }}" readonly
+                                            placeholder="Your institution name"
+                                            class="w-full px-3 py-2 border border-gray-300 rounded-lg text-gray-900 bg-gray-50 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors">
+                                    </div>
+                                </div>
+
+                                <!-- Address - Full Width (Key Field) -->
+                                <div>
+                                    <label for="address" class="block text-sm font-medium text-gray-700 mb-2">
+                                        Address
+                                    </label>
+                                    <textarea id="address" name="address" rows="3" readonly placeholder="Your full address"
+                                        class="w-full px-3 py-2 border border-gray-300 rounded-lg text-gray-900 bg-gray-50 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors resize-none">{{ $profile->address ?? '' }}</textarea>
+                                </div>
+                            </div>
+                        </div>
+                    @elseif($user->user_type === 'tutor')
+                        <div class="bg-white rounded-lg shadow-sm border border-gray-200 mb-4">
+                            <div class="px-4 py-3 border-b border-gray-200">
+                                <h2 class="text-lg font-semibold text-gray-900">Tutor Information</h2>
+                                <p class="text-sm text-gray-600 mt-1">Your academic credentials and teaching details</p>
+                            </div>
+
+                            <div class="p-4 space-y-4">
+                                <!-- Left Column Priority Fields -->
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                    <!-- University Name - Left Position (Key Field) -->
+                                    <div>
+                                        <label for="university_name" class="block text-sm font-medium text-gray-700 mb-2">
+                                            University Name
+                                        </label>
+                                        <input type="text" id="university_name" name="university_name"
+                                            value="{{ $profile->university_name ?? '' }}" readonly
+                                            placeholder="Your university name"
+                                            class="w-full px-3 py-2 border border-gray-300 rounded-lg text-gray-900 bg-gray-50 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors">
+                                    </div>
+
+                                    <!-- University ID - Right Position -->
+                                    <div>
+                                        <label for="university_id" class="block text-sm font-medium text-gray-700 mb-2">
+                                            University ID
+                                        </label>
+                                        <input type="text" id="university_id" name="university_id"
+                                            value="{{ $profile->university_id ?? '' }}" readonly
+                                            placeholder="Your student ID"
+                                            class="w-full px-3 py-2 border border-gray-300 rounded-lg text-gray-900 bg-gray-50 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors">
+                                    </div>
+                                </div>
+
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                    <!-- Department - Left Position (Key Field) -->
+                                    <div>
+                                        <label for="department" class="block text-sm font-medium text-gray-700 mb-2">
+                                            Department
+                                        </label>
+                                        <input type="text" id="department" name="department"
+                                            value="{{ $profile->department ?? '' }}" readonly
+                                            placeholder="Your department"
+                                            class="w-full px-3 py-2 border border-gray-300 rounded-lg text-gray-900 bg-gray-50 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors">
+                                    </div>
+
+                                    <!-- Semester - Right Position -->
+                                    <div>
+                                        <label for="semester" class="block text-sm font-medium text-gray-700 mb-2">
+                                            Semester
+                                        </label>
+                                        <input type="text" id="semester" name="semester"
+                                            value="{{ $profile->semester ?? '' }}" readonly
+                                            placeholder="Current semester"
+                                            class="w-full px-3 py-2 border border-gray-300 rounded-lg text-gray-900 bg-gray-50 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors">
+                                    </div>
+                                </div>
+
+                                <!-- Address - Full Width (Key Field) -->
+                                <div>
+                                    <label for="address" class="block text-sm font-medium text-gray-700 mb-2">
+                                        Address
+                                    </label>
+                                    <textarea id="address" name="address" rows="3" readonly placeholder="Your full address"
+                                        class="w-full px-3 py-2 border border-gray-300 rounded-lg text-gray-900 bg-gray-50 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors resize-none">{{ $profile->address ?? '' }}</textarea>
+                                </div>
+
+                                <!-- University ID Image - Full Width -->
+                                <div>
+                                    <label for="university_id_image" class="block text-sm font-medium text-gray-700 mb-2">
+                                        University ID Image
+                                    </label>
+                                    <input type="file" id="university_id_image" name="university_id_image"
+                                        accept="image/*" disabled
+                                        class="w-full px-3 py-2 border border-gray-300 rounded-lg text-gray-900 bg-gray-50 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors file:mr-4 file:py-1 file:px-3 file:rounded-lg file:border-0 file:text-sm file:font-medium file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100">
+                                    <p class="text-xs text-gray-500 mt-1">Upload your university ID card image for
+                                        verification</p>
+                                </div>
+                            </div>
+                        </div>
+                    @elseif($user->user_type === 'guardian')
+                        <div class="bg-white rounded-lg shadow-sm border border-gray-200 mb-4">
+                            <div class="px-4 py-3 border-b border-gray-200">
+                                <h2 class="text-lg font-semibold text-gray-900">Guardian Information</h2>
+                                <p class="text-sm text-gray-600 mt-1">Information about your child and family details</p>
+                            </div>
+
+                            <div class="p-4 space-y-4">
+                                <!-- Left Column Priority Fields -->
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                    <!-- Child Name - Left Position (Key Field) -->
+                                    <div>
+                                        <label for="child_name" class="block text-sm font-medium text-gray-700 mb-2">
+                                            Child Name
+                                        </label>
+                                        <input type="text" id="child_name" name="child_name"
+                                            value="{{ $profile->child_name ?? '' }}" readonly
+                                            placeholder="Your child's name"
+                                            class="w-full px-3 py-2 border border-gray-300 rounded-lg text-gray-900 bg-gray-50 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors">
+                                    </div>
+
+                                    <!-- Child Birth Date - Left Position (Key Field) -->
+                                    <div>
+                                        <label for="child_birthdate" class="block text-sm font-medium text-gray-700 mb-2">
+                                            Child Birth Date
+                                        </label>
+                                        <input type="date" id="child_birthdate" name="child_birthdate"
+                                            value="{{ $profile->child_birthdate ?? '' }}" readonly
+                                            class="w-full px-3 py-2 border border-gray-300 rounded-lg text-gray-900 bg-gray-50 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors">
+                                    </div>
+                                </div>
+
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                    <!-- Current Class - Left Position (Key Field) -->
+                                    <div>
+                                        <label for="current_class" class="block text-sm font-medium text-gray-700 mb-2">
+                                            Current Class
+                                        </label>
+                                        <input type="text" id="current_class" name="current_class"
+                                            value="{{ $profile->current_class ?? '' }}" readonly
+                                            placeholder="e.g., Grade 12, Year 2, etc."
+                                            class="w-full px-3 py-2 border border-gray-300 rounded-lg text-gray-900 bg-gray-50 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors">
+                                    </div>
+
+                                    <!-- School/College Name - Left Position (Key Field) -->
+                                    <div>
+                                        <label for="school_college_name"
+                                            class="block text-sm font-medium text-gray-700 mb-2">
+                                            School/College Name
+                                        </label>
+                                        <input type="text" id="school_college_name" name="school_college_name"
+                                            value="{{ $profile->school_college_name ?? '' }}" readonly
+                                            placeholder="Your child's institution name"
+                                            class="w-full px-3 py-2 border border-gray-300 rounded-lg text-gray-900 bg-gray-50 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors">
+                                    </div>
+                                </div>
+
+                                <!-- Address - Full Width (Key Field) -->
+                                <div>
+                                    <label for="address" class="block text-sm font-medium text-gray-700 mb-2">
+                                        Address
+                                    </label>
+                                    <textarea id="address" name="address" rows="3" readonly placeholder="Your full address"
+                                        class="w-full px-3 py-2 border border-gray-300 rounded-lg text-gray-900 bg-gray-50 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors resize-none">{{ $profile->address ?? '' }}</textarea>
+                                </div>
+                            </div>
+                        </div>
+                    @endif
+
                     <!-- Action Buttons -->
-                    <div id="formActions" class="flex justify-end space-x-4 hidden">
-                        <button type="button" id="cancelEdit" class="px-6 py-2 text-gray-700 bg-gray-200 rounded-lg hover:bg-gray-300 transition-colors">
+                    <div id="action-buttons"
+                        class="flex flex-col sm:flex-row sm:justify-end space-y-3 sm:space-y-0 sm:space-x-4"
+                        style="display: none;">
+                        <button type="button" id="cancel-btn"
+                            class="w-full sm:w-auto px-6 py-2 border border-gray-300 rounded-lg text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 transition-colors">
                             Cancel
                         </button>
-                        <button type="submit" class="px-6 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors">
+                        <button type="submit"
+                            class="w-full sm:w-auto px-6 py-2 bg-blue-600 border border-transparent rounded-lg text-sm font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors">
                             <svg class="w-4 h-4 inline mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7">
+                                </path>
                             </svg>
                             Save Changes
                         </button>
@@ -152,76 +409,66 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            const editToggle = document.getElementById('editToggle');
-            const cancelEdit = document.getElementById('cancelEdit');
-            const formActions = document.getElementById('formActions');
-            const profileInputs = document.querySelectorAll('.profile-input');
-            const experienceSelect = document.getElementById('experience');
-            
-            let isEditing = false;
-            
-            editToggle.addEventListener('click', function() {
-                if (!isEditing) {
-                    // Enable editing
-                    profileInputs.forEach(input => {
-                        input.removeAttribute('readonly');
-                        input.classList.remove('bg-white');
-                        input.classList.add('bg-white');
-                    });
-                    
-                    if (experienceSelect) {
-                        experienceSelect.removeAttribute('disabled');
-                    }
-                    
-                    formActions.classList.remove('hidden');
-                    editToggle.innerHTML = `
-                        <svg class="w-4 h-4 inline mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-                        </svg>
-                        Cancel Edit
-                    `;
-                    editToggle.classList.remove('bg-indigo-600', 'hover:bg-indigo-700');
-                    editToggle.classList.add('bg-gray-600', 'hover:bg-gray-700');
-                    isEditing = true;
-                } else {
-                    cancelEditing();
-                }
-            });
-            
-            cancelEdit.addEventListener('click', function() {
-                cancelEditing();
-            });
-            
-            function cancelEditing() {
-                // Disable editing
-                profileInputs.forEach(input => {
-                    input.setAttribute('readonly', true);
+            const editBtn = document.getElementById('edit-profile-btn');
+            const cancelEditBtn = document.getElementById('cancel-edit-btn');
+            const cancelBtn = document.getElementById('cancel-btn');
+            const actionButtons = document.getElementById('action-buttons');
+            const form = document.getElementById('profile-form');
+
+            // Get all form inputs except email and user_type
+            const readonlyInputs = form.querySelectorAll(
+                'input[readonly]:not(#email):not(#user_type), textarea[readonly]');
+            const fileInputs = form.querySelectorAll('input[type="file"]');
+
+            function enableEditMode() {
+                // Show cancel button and action buttons
+                editBtn.style.display = 'none';
+                cancelEditBtn.style.display = 'inline-flex';
+                actionButtons.style.display = 'flex';
+
+                // Enable readonly inputs (except email and user_type)
+                readonlyInputs.forEach(input => {
+                    input.removeAttribute('readonly');
+                    input.classList.remove('bg-gray-50', 'cursor-not-allowed');
+                    input.classList.add('bg-white');
                 });
-                
-                if (experienceSelect) {
-                    experienceSelect.setAttribute('disabled', true);
-                }
-                
-                formActions.classList.add('hidden');
-                editToggle.innerHTML = `
-                    <svg class="w-4 h-4 inline mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
-                    </svg>
-                    Edit Profile
-                `;
-                editToggle.classList.remove('bg-gray-600', 'hover:bg-gray-700');
-                editToggle.classList.add('bg-indigo-600', 'hover:bg-indigo-700');
-                isEditing = false;
+
+                // Enable file inputs
+                fileInputs.forEach(input => {
+                    input.removeAttribute('disabled');
+                    input.classList.remove('bg-gray-50');
+                    input.classList.add('bg-white');
+                });
             }
-            
-            // Handle form submission
-            document.getElementById('profileForm').addEventListener('submit', function(e) {
-                e.preventDefault();
-                
-                // Show success message (in a real app, this would submit to server)
-                alert('Profile updated successfully!');
-                cancelEditing();
-            });
+
+            function disableEditMode() {
+                // Show edit button and hide others
+                editBtn.style.display = 'inline-flex';
+                cancelEditBtn.style.display = 'none';
+                actionButtons.style.display = 'none';
+
+                // Disable inputs
+                readonlyInputs.forEach(input => {
+                    input.setAttribute('readonly', 'readonly');
+                    input.classList.add('bg-gray-50');
+                    input.classList.remove('bg-white');
+                });
+
+                // Disable file inputs
+                fileInputs.forEach(input => {
+                    input.setAttribute('disabled', 'disabled');
+                    input.classList.add('bg-gray-50');
+                    input.classList.remove('bg-white');
+                });
+
+                // Reset form to original values
+                form.reset();
+            }
+
+            // Event listeners
+            editBtn.addEventListener('click', enableEditMode);
+            cancelEditBtn.addEventListener('click', disableEditMode);
+            cancelBtn.addEventListener('click', disableEditMode);
         });
     </script>
 @endsection

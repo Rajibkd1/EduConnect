@@ -10,7 +10,9 @@ Route::get('/', function () {
 })->name('home');
 
 // Signup routes
-Route::get('/signup', [SignupController::class, 'show'])->name('signup.show');
+Route::get('/signup', function() {
+    return view('signup');
+})->name('signup.show');
 Route::post('/signup/send-otp', [SignupController::class, 'sendOtp'])->name('signup.sendOtp');
 Route::post('/signup/verify-otp', [SignupController::class, 'verifyOtp'])->name('signup.verifyOtp');
 Route::post('/signup', [SignupController::class, 'store'])->name('signup.store');
@@ -32,7 +34,7 @@ Route::get('/test-navigation', function () {
     $fakeUser->user_type = 'student';
     $fakeUser->created_at = now();
     $fakeUser->updated_at = now();
-    
+
     // Set the attributes array to make the model work properly
     $fakeUser->setRawAttributes([
         'id' => 1,
@@ -42,13 +44,13 @@ Route::get('/test-navigation', function () {
         'created_at' => now(),
         'updated_at' => now(),
     ]);
-    
+
     // Mark the model as existing
     $fakeUser->exists = true;
-    
+
     // Temporarily authenticate this fake user
     Auth::login($fakeUser);
-    
+
     // Redirect to dashboard to ensure proper authentication state
     return redirect()->route('dashboard');
 })->name('test-navigation');
@@ -60,9 +62,8 @@ Route::middleware('auth')->group(function () {
     })->name('dashboard');
 
     // Profile routes
-    Route::get('/profile', function () {
-        return view('profile', ['user' => auth()->user()]);
-    })->name('profile');
+    Route::get('/profile', [App\Http\Controllers\ProfileController::class, 'show'])->name('profile.show');
+    Route::put('/profile', [App\Http\Controllers\ProfileController::class, 'update'])->name('profile.update');
 
     // Student and Guardian routes
     Route::get('/search-tutor', function () {

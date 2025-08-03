@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Models\Student;
 use App\Models\Tutor;
@@ -166,9 +167,12 @@ class SignupController extends Controller
             // Clean up verification record
             $verification->delete();
 
+            // Automatically log in the user
+            Auth::login($user);
+
             return response()->json([
                 'success' => true,
-                'message' => 'Account created successfully!'
+                'message' => 'Account created successfully! Redirecting to dashboard...'
             ]);
         } catch (\Exception $e) {
             return response()->json([

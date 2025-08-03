@@ -31,7 +31,7 @@
     @auth
         <!-- Main Content Area for Authenticated Users -->
         <section class="lg:ml-64 min-h-screen bg-gray-50 pt-16 lg:pt-0">
-            <div class="px-4 sm:px-6 lg:px-8 py-6">
+            <div class="px-2 sm:px-3 lg:px-4 py-4">
                 @yield('content')
             </div>
         </section>
