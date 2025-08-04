@@ -15,6 +15,9 @@ Route::get('/', function () {
 Route::get('/language/{locale}', [LanguageController::class, 'switch'])->name('language.switch');
 Route::get('/api/language/current', [LanguageController::class, 'current'])->name('language.current');
 
+// Theme switching routes
+Route::get('/theme/{theme}', [App\Http\Controllers\ThemeController::class, 'switch'])->name('theme.switch');
+
 // Signup routes
 Route::get('/signup', function () {
     return view('signup');

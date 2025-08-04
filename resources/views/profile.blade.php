@@ -3,7 +3,7 @@
 @section('title', __('profile.title'))
 
 @section('content')
-    <div class="min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50">
+    <div class="min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
         <!-- Enhanced Header with Gradient Background -->
         <div class="relative bg-gradient-to-r from-indigo-600 via-blue-600 to-purple-600 overflow-hidden">
             <!-- Background Pattern -->
@@ -171,7 +171,7 @@
 
                     <!-- Enhanced Basic Information Card -->
                     <div
-                        class="bg-white/80 backdrop-blur-sm rounded-2xl shadow-xl border border-white/20 mb-6 overflow-hidden">
+                        class="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-2xl shadow-xl border border-white/20 dark:border-gray-700/20 mb-6 overflow-hidden">
                         <div class="bg-gradient-to-r from-indigo-500 to-purple-600 px-6 py-4">
                             <h2 class="text-xl font-bold text-white flex items-center">
                                 <svg class="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -203,59 +203,59 @@
                                     @endif
                                 </div>
                                 <div class="flex-1">
-                                    <label for="profile_image" class="block text-sm font-medium text-gray-700 mb-2">
+                                    <label for="profile_image" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                                         {{ __('profile.basic_info.profile_picture') }}
                                     </label>
                                     <input type="file" id="profile_image" name="profile_image" accept="image/*"
                                         disabled
-                                        class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl text-gray-900 bg-gray-50 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all duration-200 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-medium file:bg-indigo-50 file:text-indigo-700 hover:file:bg-indigo-100">
-                                    <p class="text-xs text-gray-500 mt-2">{{ __('profile.basic_info.profile_picture_help') }}</p>
+                                        class="w-full px-4 py-3 border-2 border-gray-200 dark:border-gray-600 rounded-xl text-gray-900 dark:text-gray-100 bg-gray-50 dark:bg-gray-700 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all duration-200 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-medium file:bg-indigo-50 file:text-indigo-700 hover:file:bg-indigo-100">
+                                    <p class="text-xs text-gray-500 dark:text-gray-400 mt-2">{{ __('profile.basic_info.profile_picture_help') }}</p>
                                 </div>
                             </div>
 
                             <!-- Full Name -->
                             <div>
-                                <label for="name" class="block text-sm font-medium text-gray-700 mb-2">
+                                <label for="name" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                                     {{ __('profile.basic_info.full_name') }} <span class="text-red-500">*</span>
                                 </label>
                                 <input type="text" id="name" name="name" value="{{ $user->name }}" readonly
-                                    class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl text-gray-900 bg-gray-50 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all duration-200">
+                                    class="w-full px-4 py-3 border-2 border-gray-200 dark:border-gray-600 rounded-xl text-gray-900 dark:text-gray-100 bg-gray-50 dark:bg-gray-700 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all duration-200">
                             </div>
 
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                                 <!-- Phone Number -->
                                 <div>
-                                    <label for="phone_number" class="block text-sm font-medium text-gray-700 mb-2">
+                                    <label for="phone_number" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                                         {{ __('profile.basic_info.phone_number') }}
                                     </label>
                                     <input type="tel" id="phone_number" name="phone_number"
                                         value="{{ $profile->phone_number ?? '' }}" readonly
                                         placeholder="{{ __('profile.basic_info.phone_placeholder') }}"
-                                        class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl text-gray-900 bg-gray-50 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all duration-200">
+                                        class="w-full px-4 py-3 border-2 border-gray-200 dark:border-gray-600 rounded-xl text-gray-900 dark:text-gray-100 bg-gray-50 dark:bg-gray-700 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all duration-200">
                                 </div>
 
                                 <!-- Account Type -->
                                 <div>
-                                    <label for="user_type" class="block text-sm font-medium text-gray-700 mb-2">
+                                    <label for="user_type" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                                         {{ __('profile.basic_info.account_type') }}
                                     </label>
                                     <input type="text" id="user_type" value="{{ ucfirst($user->user_type) }}"
                                         readonly
-                                        class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl text-gray-500 bg-gray-100 cursor-not-allowed">
+                                        class="w-full px-4 py-3 border-2 border-gray-200 dark:border-gray-600 rounded-xl text-gray-500 dark:text-gray-400 bg-gray-100 dark:bg-gray-700 cursor-not-allowed">
                                 </div>
                             </div>
 
                             <!-- Email Address -->
                             <div>
-                                <label for="email" class="block text-sm font-medium text-gray-700 mb-2">
+                                <label for="email" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                                     {{ __('profile.basic_info.email_address') }}
                                 </label>
                                 <div class="relative">
                                     <input type="email" id="email" name="email" value="{{ $user->email }}"
                                         readonly
-                                        class="w-full px-4 py-3 pr-12 border-2 border-gray-200 rounded-xl text-gray-500 bg-gray-100 cursor-not-allowed">
+                                        class="w-full px-4 py-3 pr-12 border-2 border-gray-200 dark:border-gray-600 rounded-xl text-gray-500 dark:text-gray-400 bg-gray-100 dark:bg-gray-700 cursor-not-allowed">
                                     <div class="absolute inset-y-0 right-0 pr-4 flex items-center">
-                                        <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor"
+                                        <svg class="w-5 h-5 text-gray-400 dark:text-gray-500" fill="none" stroke="currentColor"
                                             viewBox="0 0 24 24">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                                 d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z">
@@ -263,7 +263,7 @@
                                         </svg>
                                     </div>
                                 </div>
-                                <p class="text-xs text-gray-500 mt-2">{{ __('profile.basic_info.email_locked') }}</p>
+                                <p class="text-xs text-gray-500 dark:text-gray-400 mt-2">{{ __('profile.basic_info.email_locked') }}</p>
                             </div>
                         </div>
                     </div>
@@ -271,7 +271,7 @@
                     <!-- User Type Specific Information -->
                     @if ($user->user_type === 'student')
                         <div
-                            class="bg-white/80 backdrop-blur-sm rounded-2xl shadow-xl border border-white/20 mb-6 overflow-hidden">
+                            class="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-2xl shadow-xl border border-white/20 dark:border-gray-700/20 mb-6 overflow-hidden">
                             <div class="bg-gradient-to-r from-blue-500 to-cyan-600 px-6 py-4">
                                 <h2 class="text-xl font-bold text-white flex items-center">
                                     <svg class="w-6 h-6 mr-3" fill="currentColor" viewBox="0 0 20 20">
@@ -287,24 +287,24 @@
                                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                                     <!-- Birth Date -->
                                     <div>
-                                        <label for="birth_date" class="block text-sm font-medium text-gray-700 mb-2">
+                                        <label for="birth_date" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                                             {{ __('profile.student_info.birth_date') }}
                                         </label>
                                         <input type="date" id="birth_date" name="birth_date"
                                             value="{{ $profile->birth_date ?? '' }}" readonly
-                                            class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl text-gray-900 bg-gray-50 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200">
+                                            class="w-full px-4 py-3 border-2 border-gray-200 dark:border-gray-600 rounded-xl text-gray-900 dark:text-gray-100 bg-gray-50 dark:bg-gray-700 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200">
                                     </div>
 
                                     <!-- Educational Level -->
                                     <div>
                                         <label for="educational_level"
-                                            class="block text-sm font-medium text-gray-700 mb-2">
+                                            class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                                             {{ __('profile.student_info.educational_level') }}
                                         </label>
                                         <input type="text" id="educational_level" name="educational_level"
                                             value="{{ $profile->educational_level ?? '' }}" readonly
                                             placeholder="{{ __('profile.student_info.educational_level_placeholder') }}"
-                                            class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl text-gray-900 bg-gray-50 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200">
+                                            class="w-full px-4 py-3 border-2 border-gray-200 dark:border-gray-600 rounded-xl text-gray-900 dark:text-gray-100 bg-gray-50 dark:bg-gray-700 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200">
                                     </div>
                                 </div>
 
@@ -312,35 +312,35 @@
                                     <!-- Current Study Class -->
                                     <div>
                                         <label for="current_study_class"
-                                            class="block text-sm font-medium text-gray-700 mb-2">
+                                            class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                                             {{ __('profile.student_info.current_study_class') }}
                                         </label>
                                         <input type="text" id="current_study_class" name="current_study_class"
                                             value="{{ $profile->current_study_class ?? '' }}" readonly
                                             placeholder="{{ __('profile.student_info.current_study_class_placeholder') }}"
-                                            class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl text-gray-900 bg-gray-50 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200">
+                                            class="w-full px-4 py-3 border-2 border-gray-200 dark:border-gray-600 rounded-xl text-gray-900 dark:text-gray-100 bg-gray-50 dark:bg-gray-700 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200">
                                     </div>
 
                                     <!-- School/College Name -->
                                     <div>
                                         <label for="school_college_name"
-                                            class="block text-sm font-medium text-gray-700 mb-2">
+                                            class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                                             {{ __('profile.student_info.school_college_name') }}
                                         </label>
                                         <input type="text" id="school_college_name" name="school_college_name"
                                             value="{{ $profile->school_college_name ?? '' }}" readonly
                                             placeholder="{{ __('profile.student_info.school_college_placeholder') }}"
-                                            class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl text-gray-900 bg-gray-50 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200">
+                                            class="w-full px-4 py-3 border-2 border-gray-200 dark:border-gray-600 rounded-xl text-gray-900 dark:text-gray-100 bg-gray-50 dark:bg-gray-700 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200">
                                     </div>
                                 </div>
 
                                 <!-- Address -->
                                 <div>
-                                    <label for="address" class="block text-sm font-medium text-gray-700 mb-2">
+                                    <label for="address" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                                         {{ __('profile.student_info.address') }}
                                     </label>
                                     <textarea id="address" name="address" rows="3" readonly placeholder="{{ __('profile.student_info.address_placeholder') }}"
-                                        class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl text-gray-900 bg-gray-50 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 resize-none">{{ $profile->address ?? '' }}</textarea>
+                                        class="w-full px-4 py-3 border-2 border-gray-200 dark:border-gray-600 rounded-xl text-gray-900 dark:text-gray-100 bg-gray-50 dark:bg-gray-700 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 resize-none">{{ $profile->address ?? '' }}</textarea>
                                 </div>
                             </div>
                         </div>

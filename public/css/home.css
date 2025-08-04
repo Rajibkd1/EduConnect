@@ -5,6 +5,14 @@
     background-size: 60px 60px;
 }
 
+/* Dark mode hero pattern */
+.dark .hero-pattern {
+    background-image: 
+        radial-gradient(circle at 25% 25%, rgba(255,255,255,0.03) 1px, transparent 1px),
+        radial-gradient(circle at 75% 75%, rgba(255,255,255,0.03) 1px, transparent 1px);
+    background-size: 60px 60px;
+}
+
 .feature-card {
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
@@ -19,8 +27,22 @@
     border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
+/* Dark mode glass effect */
+.dark .glass-effect {
+    background: rgba(31, 41, 55, 0.8);
+    border: 1px solid rgba(75, 85, 99, 0.2);
+}
+
 .text-gradient {
     background: linear-gradient(135deg, #1f2937 0%, #374151 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Dark mode text gradient */
+.dark .text-gradient {
+    background: linear-gradient(135deg, #f9fafb 0%, #e5e7eb 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -30,6 +52,50 @@
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
 }
 
+/* Dark mode subtle shadow */
+.dark .subtle-shadow {
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2), 0 2px 4px -1px rgba(0, 0, 0, 0.1);
+}
+
 .elegant-shadow {
     box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.08), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+/* Dark mode elegant shadow */
+.dark .elegant-shadow {
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3), 0 10px 10px -5px rgba(0, 0, 0, 0.2);
+}
+
+/* Additional dark mode improvements */
+.dark .hero-floating-elements {
+    opacity: 0.1;
+}
+
+/* Ensure proper text contrast in dark mode */
+.dark h1, .dark h2, .dark h3, .dark h4, .dark h5, .dark h6 {
+    color: #ffffff;
+}
+
+.dark p {
+    color: #d1d5db;
+}
+
+/* Dark mode button improvements */
+.dark .btn-primary {
+    background-color: #ffffff;
+    color: #1f2937;
+}
+
+.dark .btn-primary:hover {
+    background-color: #f3f4f6;
+}
+
+.dark .btn-secondary {
+    border-color: #6b7280;
+    color: #d1d5db;
+}
+
+.dark .btn-secondary:hover {
+    border-color: #9ca3af;
+    color: #ffffff;
 }

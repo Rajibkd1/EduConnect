@@ -62,6 +62,9 @@ return [
     'info' => 'তথ্য',
     'language' => 'ভাষা',
     'language_changed' => 'ভাষা সফলভাবে পরিবর্তিত হয়েছে',
+    'theme' => 'থিম',
+    'light_mode' => 'লাইট মোড',
+    'dark_mode' => 'ডার্ক মোড',
     
     // User types
     'student' => 'শিক্ষার্থী',

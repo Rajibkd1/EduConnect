@@ -3,55 +3,55 @@
 return [
     'hero' => [
         'title' => 'Connect. Learn. Grow.',
-        'subtitle' => 'EduConnect bridges the gap between students, tutors, and guardians, creating a seamless educational ecosystem for enhanced learning experiences.',
-        'start_learning' => 'Start Learning Today',
+        'subtitle' => 'Your gateway to personalized education and meaningful connections',
+        'start_learning' => 'Start Learning',
         'learn_more' => 'Learn More',
     ],
-
+    
     'features' => [
         'title' => 'Why Choose EduConnect?',
-        'subtitle' => 'Our platform offers comprehensive features designed to enhance the educational experience for all users through elegant simplicity and powerful functionality.',
+        'subtitle' => 'Discover the features that make learning and teaching more effective and enjoyable',
         
         'students' => [
             'title' => 'For Students',
-            'description' => 'Access qualified tutors, schedule sessions, track progress, and enhance your learning journey with personalized support tailored to your needs.',
+            'description' => 'Find qualified tutors, schedule sessions, and track your learning progress with our comprehensive student platform.',
         ],
         
         'tutors' => [
             'title' => 'For Tutors',
-            'description' => 'Share your expertise, manage students, create flexible schedules, and build your teaching reputation on our intuitive platform.',
+            'description' => 'Share your expertise, manage your teaching schedule, and connect with students who need your help.',
         ],
         
         'guardians' => [
             'title' => 'For Guardians',
-            'description' => 'Monitor your child\'s progress, communicate with tutors, and stay actively involved in their educational development journey.',
+            'description' => 'Monitor your child\'s educational journey, communicate with tutors, and ensure quality learning experiences.',
         ],
         
         'security' => [
-            'title' => 'Secure Platform',
-            'description' => 'Your data is protected with advanced security measures, email verification, and secure authentication systems you can trust.',
+            'title' => 'Secure & Safe',
+            'description' => 'Your privacy and security are our top priorities. All interactions are monitored and protected.',
         ],
         
         'scheduling' => [
             'title' => 'Flexible Scheduling',
-            'description' => 'Book sessions at your convenience with our flexible scheduling system that adapts to your busy lifestyle and preferences.',
+            'description' => 'Book sessions at your convenience with our easy-to-use scheduling system and calendar integration.',
         ],
         
         'tracking' => [
             'title' => 'Progress Tracking',
-            'description' => 'Monitor learning progress with detailed analytics, session reports, and performance insights for continuous improvement and growth.',
+            'description' => 'Monitor learning outcomes, track session history, and measure educational progress over time.',
         ],
     ],
-
+    
     'about' => [
         'title' => 'About EduConnect',
-        'description' => 'EduConnect is a comprehensive educational platform designed to create meaningful connections between students, tutors, and guardians. Our mission is to make quality education accessible, personalized, and effective for everyone.',
-        'mission' => 'With features like secure authentication, flexible scheduling, progress tracking, and real-time communication, we\'re revolutionizing the way education happens in the digital age.',
+        'description' => 'EduConnect is a comprehensive educational platform that bridges the gap between students, tutors, and guardians.',
+        'mission' => 'Our mission is to make quality education accessible to everyone through technology-enabled personalized learning experiences.',
         
         'stats' => [
             'students' => 'Active Students',
             'tutors' => 'Qualified Tutors',
-            'subjects' => 'Subjects Covered',
+            'subjects' => 'Subject Areas',
             'satisfaction' => 'Satisfaction Rate',
         ],
         
@@ -62,30 +62,30 @@ return [
                 'description' => 'Create your account as a student, tutor, or guardian with secure email verification.',
             ],
             'step2' => [
-                'title' => 'Connect',
-                'description' => 'Find the perfect tutor or student match based on subjects and preferences.',
+                'title' => 'Find & Connect',
+                'description' => 'Browse qualified tutors, view profiles, and connect with the perfect match for your needs.',
             ],
             'step3' => [
                 'title' => 'Learn & Grow',
-                'description' => 'Schedule sessions, track progress, and achieve your educational goals together.',
+                'description' => 'Schedule sessions, track progress, and achieve your educational goals with personalized support.',
             ],
         ],
     ],
-
+    
     'cta' => [
-        'title' => 'Ready to Start Your Learning Journey?',
-        'subtitle' => 'Join thousands of students, tutors, and guardians who are already part of the EduConnect community and transforming education together.',
-        'get_started' => 'Get Started Now',
+        'title' => 'Ready to Transform Your Learning Experience?',
+        'subtitle' => 'Join thousands of students and tutors who are already part of the EduConnect community',
+        'get_started' => 'Get Started Today',
     ],
-
+    
     'contact' => [
         'title' => 'Get in Touch',
-        'subtitle' => 'Have questions? We\'re here to help you get started with EduConnect and support your educational journey.',
+        'subtitle' => 'Have questions? We\'re here to help you get started on your educational journey',
         'email' => 'Email Us',
-        'phone' => 'Call Us',
-        'address' => 'Visit Us',
         'email_address' => 'support@educonnect.com',
-        'phone_number' => '+1 (555) 123-4567',
-        'physical_address' => '123 Education St, Learning City',
+        'phone' => 'Call Us',
+        'phone_number' => '+880 1234-567890',
+        'address' => 'Visit Us',
+        'physical_address' => 'Dhaka, Bangladesh',
     ],
 ];

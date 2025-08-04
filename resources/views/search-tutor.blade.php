@@ -3,7 +3,7 @@
 @section('title', __('search_tutor.title'))
 
 @section('content')
-    <div class="min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50">
+    <div class="min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
         <!-- Enhanced Header -->
         <div class="bg-gradient-to-r from-indigo-600 to-purple-600 shadow-lg">
             <div class="px-6 py-8">
@@ -16,14 +16,14 @@
 
         <div class="max-w-7xl mx-auto px-6 py-8">
             <!-- Enhanced Search Filters -->
-            <div class="bg-white/80 backdrop-blur-sm rounded-2xl shadow-xl border border-white/20 p-6 mb-8">
+            <div class="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-2xl shadow-xl border border-white/20 dark:border-gray-700/20 p-6 mb-8">
                 <form method="GET" action="{{ route('search-tutor') }}" class="space-y-6">
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                         <!-- Subject Filter -->
                         <div>
-                            <label for="subject" class="block text-sm font-medium text-gray-700 mb-2">{{ __('search_tutor.filters.subject') }}</label>
+                            <label for="subject" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">{{ __('search_tutor.filters.subject') }}</label>
                             <select id="subject" name="subject"
-                                class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all duration-200">
+                                class="w-full px-4 py-3 border-2 border-gray-200 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all duration-200 bg-white dark:bg-gray-700 text-gray-900 dark:text-white">
                                 <option value="">{{ __('search_tutor.filters.all_subjects') }}</option>
                                 @foreach ($subjects as $subject)
                                     <option value="{{ $subject->id }}"
@@ -36,26 +36,26 @@
 
                         <!-- Search by Name -->
                         <div>
-                            <label for="search" class="block text-sm font-medium text-gray-700 mb-2">{{ __('search_tutor.filters.tutor_name') }}</label>
+                            <label for="search" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">{{ __('search_tutor.filters.tutor_name') }}</label>
                             <input type="text" id="search" name="search" value="{{ request('search') }}"
                                 placeholder="{{ __('search_tutor.filters.search_by_name') }}"
-                                class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all duration-200">
+                                class="w-full px-4 py-3 border-2 border-gray-200 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all duration-200 bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400">
                         </div>
 
                         <!-- University Filter -->
                         <div>
-                            <label for="university" class="block text-sm font-medium text-gray-700 mb-2">{{ __('search_tutor.filters.university') }}</label>
+                            <label for="university" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">{{ __('search_tutor.filters.university') }}</label>
                             <input type="text" id="university" name="university" value="{{ request('university') }}"
                                 placeholder="{{ __('search_tutor.filters.university_placeholder') }}"
-                                class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all duration-200">
+                                class="w-full px-4 py-3 border-2 border-gray-200 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all duration-200 bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400">
                         </div>
 
                         <!-- Department Filter -->
                         <div>
-                            <label for="department" class="block text-sm font-medium text-gray-700 mb-2">{{ __('search_tutor.filters.department') }}</label>
+                            <label for="department" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">{{ __('search_tutor.filters.department') }}</label>
                             <input type="text" id="department" name="department" value="{{ request('department') }}"
                                 placeholder="{{ __('search_tutor.filters.department_placeholder') }}"
-                                class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all duration-200">
+                                class="w-full px-4 py-3 border-2 border-gray-200 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all duration-200 bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400">
                         </div>
                     </div>
 
@@ -63,9 +63,9 @@
                         <div class="flex items-center space-x-6">
                             <!-- Minimum Rating Filter -->
                             <div>
-                                <label for="min_rating" class="block text-sm font-medium text-gray-700 mb-2">{{ __('search_tutor.filters.minimum_rating') }}</label>
+                                <label for="min_rating" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">{{ __('search_tutor.filters.minimum_rating') }}</label>
                                 <select id="min_rating" name="min_rating"
-                                    class="px-4 py-2 border-2 border-gray-200 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500">
+                                    class="px-4 py-2 border-2 border-gray-200 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 bg-white dark:bg-gray-700 text-gray-900 dark:text-white">
                                     <option value="">{{ __('search_tutor.filters.any_rating') }}</option>
                                     <option value="4" {{ request('min_rating') == '4' ? 'selected' : '' }}>{{ __('search_tutor.filters.4_plus_stars') }}</option>
                                     <option value="3" {{ request('min_rating') == '3' ? 'selected' : '' }}>{{ __('search_tutor.filters.3_plus_stars') }}</option>
@@ -76,7 +76,7 @@
 
                         <div class="flex space-x-4">
                             <a href="{{ route('search-tutor') }}"
-                                class="px-6 py-3 bg-gray-200 text-gray-700 rounded-xl hover:bg-gray-300 transition-colors">
+                                class="px-6 py-3 bg-gray-200 dark:bg-gray-600 text-gray-700 dark:text-gray-300 rounded-xl hover:bg-gray-300 dark:hover:bg-gray-500 transition-colors">
                                 {{ __('search_tutor.filters.clear_filters') }}
                             </a>
                             <button type="submit"
@@ -95,8 +95,8 @@
             <!-- Search Results -->
             <div class="space-y-6">
                 <div class="flex justify-between items-center">
-                    <h2 class="text-2xl font-bold text-gray-900">{{ __('search_tutor.results.available_tutors') }}</h2>
-                    <p class="text-sm text-gray-500">{{ $tutors->total() }} {{ $tutors->total() !== 1 ? __('search_tutor.results.tutors_found_plural') : __('search_tutor.results.tutors_found') }} {{ __('search_tutor.results.found') }}</p>
+                    <h2 class="text-2xl font-bold text-gray-900 dark:text-white">{{ __('search_tutor.results.available_tutors') }}</h2>
+                    <p class="text-sm text-gray-500 dark:text-gray-400">{{ $tutors->total() }} {{ $tutors->total() !== 1 ? __('search_tutor.results.tutors_found_plural') : __('search_tutor.results.tutors_found') }} {{ __('search_tutor.results.found') }}</p>
                 </div>
 
                 @if ($tutors->count() > 0)
@@ -104,7 +104,7 @@
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                         @foreach ($tutors as $tutor)
                             <div
-                                class="bg-white/80 backdrop-blur-sm border border-white/20 rounded-2xl p-6 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+                                class="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm border border-white/20 dark:border-gray-700/20 rounded-2xl p-6 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
                                 <!-- Tutor Header -->
                                 <div class="flex items-center mb-4">
                                     <div class="relative">
@@ -129,9 +129,9 @@
                                         </div>
                                     </div>
                                     <div class="ml-4 flex-1">
-                                        <h3 class="font-bold text-gray-900 text-lg">{{ $tutor->user->name }}</h3>
-                                        <p class="text-sm text-gray-600">{{ $tutor->university_name }}</p>
-                                        <p class="text-xs text-gray-500">{{ $tutor->department }}</p>
+                                        <h3 class="font-bold text-gray-900 dark:text-white text-lg">{{ $tutor->user->name }}</h3>
+                                        <p class="text-sm text-gray-600 dark:text-gray-300">{{ $tutor->university_name }}</p>
+                                        <p class="text-xs text-gray-500 dark:text-gray-400">{{ $tutor->department }}</p>
                                     </div>
                                 </div>
 
@@ -148,13 +148,13 @@
                                                     </svg>
                                                 @endfor
                                             </div>
-                                            <span class="text-gray-600">{{ number_format($tutor->rating, 1) }}
+                                            <span class="text-gray-600 dark:text-gray-300">{{ number_format($tutor->rating, 1) }}
                                                 {{ __('search_tutor.results.rating') }}</span>
                                         </div>
                                     @endif
 
                                     @if ($tutor->experience_years)
-                                        <div class="flex items-center text-sm text-gray-600">
+                                        <div class="flex items-center text-sm text-gray-600 dark:text-gray-300">
                                             <svg class="w-4 h-4 mr-2 text-indigo-500" fill="none" stroke="currentColor"
                                                 viewBox="0 0 24 24">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -165,7 +165,7 @@
                                     @endif
 
                                     @if ($tutor->semester)
-                                        <div class="flex items-center text-sm text-gray-600">
+                                        <div class="flex items-center text-sm text-gray-600 dark:text-gray-300">
                                             <svg class="w-4 h-4 mr-2 text-purple-500" fill="currentColor"
                                                 viewBox="0 0 20 20">
                                                 <path
@@ -179,7 +179,7 @@
                                 <!-- Subjects -->
                                 @if ($tutor->subjects->count() > 0)
                                     <div class="mb-4">
-                                        <p class="text-xs font-medium text-gray-700 mb-2">{{ __('search_tutor.results.subjects') }}</p>
+                                        <p class="text-xs font-medium text-gray-700 dark:text-gray-300 mb-2">{{ __('search_tutor.results.subjects') }}</p>
                                         <div class="flex flex-wrap gap-2">
                                             @foreach ($tutor->subjects->take(3) as $subject)
                                                 <span
@@ -188,7 +188,7 @@
                                                 </span>
                                             @endforeach
                                             @if ($tutor->subjects->count() > 3)
-                                                <span class="px-3 py-1 bg-gray-100 text-gray-600 text-xs rounded-full">
+                                                <span class="px-3 py-1 bg-gray-100 dark:bg-gray-600 text-gray-600 dark:text-gray-300 text-xs rounded-full">
                                                     +{{ $tutor->subjects->count() - 3 }} {{ __('search_tutor.results.more') }}
                                                 </span>
                                             @endif
@@ -219,14 +219,14 @@
                     <!-- Empty State -->
                     <div class="text-center py-16">
                         <div
-                            class="bg-white/80 backdrop-blur-sm rounded-2xl shadow-xl border border-white/20 p-12 max-w-md mx-auto">
-                            <svg class="w-20 h-20 text-gray-400 mx-auto mb-6" fill="none" stroke="currentColor"
+                            class="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-2xl shadow-xl border border-white/20 dark:border-gray-700/20 p-12 max-w-md mx-auto">
+                            <svg class="w-20 h-20 text-gray-400 dark:text-gray-500 mx-auto mb-6" fill="none" stroke="currentColor"
                                 viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                     d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
                             </svg>
-                            <h3 class="text-xl font-bold text-gray-900 mb-3">{{ __('search_tutor.empty_state.no_tutors_found') }}</h3>
-                            <p class="text-gray-600 mb-6">{{ __('search_tutor.empty_state.adjust_criteria') }}</p>
+                            <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-3">{{ __('search_tutor.empty_state.no_tutors_found') }}</h3>
+                            <p class="text-gray-600 dark:text-gray-300 mb-6">{{ __('search_tutor.empty_state.adjust_criteria') }}</p>
                             <a href="{{ route('search-tutor') }}"
                                 class="inline-flex items-center px-6 py-3 bg-gradient-to-r from-indigo-600 to-purple-600 text-white rounded-xl hover:from-indigo-700 hover:to-purple-700 transition-all duration-200 shadow-lg hover:shadow-xl">
                                 <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">

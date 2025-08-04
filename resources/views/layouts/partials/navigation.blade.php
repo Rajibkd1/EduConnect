@@ -4,7 +4,7 @@
 
     <!-- Mobile sidebar -->
     <div id="mobile-sidebar"
-        class="fixed inset-y-0 left-0 z-50 w-64 bg-slate-800 shadow-2xl transform -translate-x-full transition-all duration-300 ease-in-out lg:hidden">
+        class="fixed inset-y-0 left-0 z-50 w-64 bg-slate-800 dark:bg-slate-900 shadow-2xl transform -translate-x-full transition-all duration-300 ease-in-out lg:hidden">
         
         <div class="h-full flex flex-col">
             <div class="flex items-center justify-between h-16 px-6 border-b border-slate-700">
@@ -60,20 +60,21 @@
                 </div>
             </div>
 
-            <!-- Mobile Language Toggle -->
+            <!-- Mobile Theme Toggle -->
             <div class="px-6 py-4 border-b border-slate-700">
                 <div class="flex items-center justify-between">
-                    <span class="text-sm text-slate-300">{{ __('ui.language') }}</span>
-                    <div class="flex items-center space-x-2">
-                        <a href="{{ route('language.switch', 'en') }}" 
-                           class="px-2 py-1 text-xs rounded {{ app()->getLocale() == 'en' ? 'bg-blue-600 text-white' : 'text-slate-300 hover:text-white' }}">
-                            EN
-                        </a>
-                        <a href="{{ route('language.switch', 'bn') }}" 
-                           class="px-2 py-1 text-xs rounded {{ app()->getLocale() == 'bn' ? 'bg-blue-600 text-white' : 'text-slate-300 hover:text-white' }}">
-                            বাং
-                        </a>
-                    </div>
+                    <span class="text-sm text-slate-300">{{ __('ui.theme') }}</span>
+                    <button onclick="toggleTheme()" class="relative inline-flex items-center h-6 rounded-full w-11 bg-slate-600 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-slate-800">
+                        <span class="sr-only">Toggle theme</span>
+                        <span id="mobile-theme-toggle" class="inline-block w-4 h-4 transform bg-white rounded-full transition-transform duration-200 {{ session('theme', 'light') === 'dark' ? 'translate-x-6' : 'translate-x-1' }}">
+                            <svg class="w-3 h-3 text-yellow-500 absolute top-0.5 left-0.5 {{ session('theme', 'light') === 'dark' ? 'hidden' : 'block' }}" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" clip-rule="evenodd"></path>
+                            </svg>
+                            <svg class="w-3 h-3 text-indigo-400 absolute top-0.5 left-0.5 {{ session('theme', 'light') === 'dark' ? 'block' : 'hidden' }}" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
+                            </svg>
+                        </span>
+                    </button>
                 </div>
             </div>
 
@@ -93,6 +94,23 @@
                 @endforeach
             </nav>
 
+            <!-- Language Toggle -->
+            <div class="p-3 border-t border-slate-700">
+                <div class="flex items-center justify-between mb-3">
+                    <span class="text-xs font-medium text-slate-400 uppercase tracking-wider">{{ __('ui.language') }}</span>
+                </div>
+                <div class="flex items-center space-x-2">
+                    <a href="{{ route('language.switch', 'en') }}" 
+                       class="flex-1 text-center px-3 py-2 text-xs font-medium rounded-lg transition-colors duration-200 {{ app()->getLocale() === 'en' ? 'bg-blue-600 text-white' : 'text-slate-300 hover:text-white hover:bg-slate-700' }}">
+                        EN
+                    </a>
+                    <a href="{{ route('language.switch', 'bn') }}" 
+                       class="flex-1 text-center px-3 py-2 text-xs font-medium rounded-lg transition-colors duration-200 {{ app()->getLocale() === 'bn' ? 'bg-blue-600 text-white' : 'text-slate-300 hover:text-white hover:bg-slate-700' }}">
+                        বাং
+                    </a>
+                </div>
+            </div>
+
             <!-- Logout Button -->
             <div class="p-3 border-t border-slate-700">
                 <form method="POST" action="{{ route('logout') }}">
@@ -106,7 +124,7 @@
                                 </path>
                             </svg>
                         </div>
-                        <span>Logout</span>
+                        <span>{{ __('navigation.logout') }}</span>
                     </button>
                 </form>
             </div>
@@ -114,7 +132,7 @@
     </div>
 
     <!-- Desktop Sidebar -->
-    <div class="hidden lg:fixed lg:inset-y-0 lg:left-0 lg:z-50 lg:block lg:w-64 lg:bg-gradient-to-b lg:from-slate-800 lg:to-slate-900 lg:shadow-2xl">
+    <div class="hidden lg:fixed lg:inset-y-0 lg:left-0 lg:z-50 lg:block lg:w-64 lg:bg-gradient-to-b lg:from-slate-800 lg:to-slate-900 dark:lg:from-slate-900 dark:lg:to-black lg:shadow-2xl">
         
         <div class="h-full flex flex-col">
             <!-- Logo -->
@@ -145,6 +163,24 @@
                             বাং
                         </a>
                     </div>
+                </div>
+            </div>
+
+            <!-- Desktop Theme Toggle -->
+            <div class="px-6 py-4 border-b border-slate-700">
+                <div class="flex items-center justify-between">
+                    <span class="text-sm text-slate-300">{{ __('ui.theme') }}</span>
+                    <button onclick="toggleTheme()" class="relative inline-flex items-center h-6 rounded-full w-11 bg-slate-600 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-slate-800">
+                        <span class="sr-only">Toggle theme</span>
+                        <span id="desktop-theme-toggle" class="inline-block w-4 h-4 transform bg-white rounded-full transition-transform duration-200 {{ session('theme', 'light') === 'dark' ? 'translate-x-6' : 'translate-x-1' }}">
+                            <svg class="w-3 h-3 text-yellow-500 absolute top-0.5 left-0.5 {{ session('theme', 'light') === 'dark' ? 'hidden' : 'block' }}" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" clip-rule="evenodd"></path>
+                            </svg>
+                            <svg class="w-3 h-3 text-indigo-400 absolute top-0.5 left-0.5 {{ session('theme', 'light') === 'dark' ? 'block' : 'hidden' }}" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
+                            </svg>
+                        </span>
+                    </button>
                 </div>
             </div>
 
@@ -276,7 +312,7 @@
                     </div>
                 </div>
 
-                <!-- Language Toggle and Auth Buttons -->
+                <!-- Language Toggle, Theme Toggle and Auth Buttons -->
                 <div class="flex items-center space-x-4">
                     <!-- Language Toggle -->
                     <div class="flex items-center space-x-2 bg-slate-700 rounded-lg p-1">
@@ -289,6 +325,19 @@
                             বাং
                         </a>
                     </div>
+
+                    <!-- Theme Toggle -->
+                    <button onclick="toggleTheme()" class="relative inline-flex items-center h-8 rounded-full w-14 bg-slate-700 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-slate-800">
+                        <span class="sr-only">Toggle theme</span>
+                        <span id="guest-theme-toggle" class="inline-block w-6 h-6 transform bg-white rounded-full transition-transform duration-200 {{ session('theme', 'light') === 'dark' ? 'translate-x-7' : 'translate-x-1' }}">
+                            <svg class="w-4 h-4 text-yellow-500 absolute top-1 left-1 {{ session('theme', 'light') === 'dark' ? 'hidden' : 'block' }}" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" clip-rule="evenodd"></path>
+                            </svg>
+                            <svg class="w-4 h-4 text-indigo-400 absolute top-1 left-1 {{ session('theme', 'light') === 'dark' ? 'block' : 'hidden' }}" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
+                            </svg>
+                        </span>
+                    </button>
                     
                     <a href="{{ route('signup.show') }}"
                         class="text-slate-300 hover:text-white px-3 py-2 text-sm font-medium transition-colors duration-200">Sign In</a>
@@ -330,6 +379,36 @@
                     <a href="{{ route('home') }}#contact"
                         class="text-slate-300 hover:text-white block px-3 py-2 text-base font-medium transition-colors duration-200">Contact</a>
                 @endif
+                <!-- Mobile Language Toggle -->
+                <div class="px-3 py-2 border-t border-slate-600">
+                    <div class="flex items-center justify-between mb-3">
+                        <span class="text-sm text-slate-300">Language</span>
+                        <div class="flex items-center space-x-2">
+                            <a href="{{ route('language.switch', 'en') }}" 
+                               class="px-2 py-1 text-xs rounded {{ app()->getLocale() == 'en' ? 'bg-blue-600 text-white' : 'text-slate-300 hover:text-white' }}">
+                                EN
+                            </a>
+                            <a href="{{ route('language.switch', 'bn') }}" 
+                               class="px-2 py-1 text-xs rounded {{ app()->getLocale() == 'bn' ? 'bg-blue-600 text-white' : 'text-slate-300 hover:text-white' }}">
+                                বাং
+                            </a>
+                        </div>
+                    </div>
+                    <div class="flex items-center justify-between mb-4">
+                        <span class="text-sm text-slate-300">Theme</span>
+                        <button onclick="toggleTheme()" class="relative inline-flex items-center h-6 rounded-full w-11 bg-slate-600 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-slate-700">
+                            <span class="sr-only">Toggle theme</span>
+                            <span id="mobile-guest-theme-toggle" class="inline-block w-4 h-4 transform bg-white rounded-full transition-transform duration-200 {{ session('theme', 'light') === 'dark' ? 'translate-x-6' : 'translate-x-1' }}">
+                                <svg class="w-3 h-3 text-yellow-500 absolute top-0.5 left-0.5 {{ session('theme', 'light') === 'dark' ? 'hidden' : 'block' }}" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" clip-rule="evenodd"></path>
+                                </svg>
+                                <svg class="w-3 h-3 text-indigo-400 absolute top-0.5 left-0.5 {{ session('theme', 'light') === 'dark' ? 'block' : 'hidden' }}" fill="currentColor" viewBox="0 0 20 20">
+                                    <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
+                                </svg>
+                            </span>
+                        </button>
+                    </div>
+                </div>
                 <div class="pt-4 pb-3 border-t border-slate-600">
                     <div class="flex items-center px-3 space-x-3">
                         <a href="{{ route('signup.show') }}"
@@ -346,6 +425,123 @@
 @endauth
 
 <script>
+// Theme toggle function
+function toggleTheme() {
+    const currentTheme = document.documentElement.classList.contains('dark') ? 'dark' : 'light';
+    const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+    
+    // Update the HTML class
+    if (newTheme === 'dark') {
+        document.documentElement.classList.add('dark');
+    } else {
+        document.documentElement.classList.remove('dark');
+    }
+    
+    // Update toggle button positions and icons
+    const mobileToggle = document.getElementById('mobile-theme-toggle');
+    const desktopToggle = document.getElementById('desktop-theme-toggle');
+    const guestToggle = document.getElementById('guest-theme-toggle');
+    const mobileGuestToggle = document.getElementById('mobile-guest-theme-toggle');
+    
+    if (mobileToggle) {
+        const mobileToggleSpan = mobileToggle;
+        const mobileSunIcon = mobileToggle.querySelector('svg:first-child');
+        const mobileMoonIcon = mobileToggle.querySelector('svg:last-child');
+        
+        if (newTheme === 'dark') {
+            mobileToggleSpan.classList.remove('translate-x-1');
+            mobileToggleSpan.classList.add('translate-x-6');
+            mobileSunIcon.classList.add('hidden');
+            mobileSunIcon.classList.remove('block');
+            mobileMoonIcon.classList.remove('hidden');
+            mobileMoonIcon.classList.add('block');
+        } else {
+            mobileToggleSpan.classList.remove('translate-x-6');
+            mobileToggleSpan.classList.add('translate-x-1');
+            mobileSunIcon.classList.remove('hidden');
+            mobileSunIcon.classList.add('block');
+            mobileMoonIcon.classList.add('hidden');
+            mobileMoonIcon.classList.remove('block');
+        }
+    }
+    
+    if (desktopToggle) {
+        const desktopToggleSpan = desktopToggle;
+        const desktopSunIcon = desktopToggle.querySelector('svg:first-child');
+        const desktopMoonIcon = desktopToggle.querySelector('svg:last-child');
+        
+        if (newTheme === 'dark') {
+            desktopToggleSpan.classList.remove('translate-x-1');
+            desktopToggleSpan.classList.add('translate-x-6');
+            desktopSunIcon.classList.add('hidden');
+            desktopSunIcon.classList.remove('block');
+            desktopMoonIcon.classList.remove('hidden');
+            desktopMoonIcon.classList.add('block');
+        } else {
+            desktopToggleSpan.classList.remove('translate-x-6');
+            desktopToggleSpan.classList.add('translate-x-1');
+            desktopSunIcon.classList.remove('hidden');
+            desktopSunIcon.classList.add('block');
+            desktopMoonIcon.classList.add('hidden');
+            desktopMoonIcon.classList.remove('block');
+        }
+    }
+    
+    if (guestToggle) {
+        const guestToggleSpan = guestToggle;
+        const guestSunIcon = guestToggle.querySelector('svg:first-child');
+        const guestMoonIcon = guestToggle.querySelector('svg:last-child');
+        
+        if (newTheme === 'dark') {
+            guestToggleSpan.classList.remove('translate-x-1');
+            guestToggleSpan.classList.add('translate-x-7');
+            guestSunIcon.classList.add('hidden');
+            guestSunIcon.classList.remove('block');
+            guestMoonIcon.classList.remove('hidden');
+            guestMoonIcon.classList.add('block');
+        } else {
+            guestToggleSpan.classList.remove('translate-x-7');
+            guestToggleSpan.classList.add('translate-x-1');
+            guestSunIcon.classList.remove('hidden');
+            guestSunIcon.classList.add('block');
+            guestMoonIcon.classList.add('hidden');
+            guestMoonIcon.classList.remove('block');
+        }
+    }
+    
+    if (mobileGuestToggle) {
+        const mobileGuestToggleSpan = mobileGuestToggle;
+        const mobileGuestSunIcon = mobileGuestToggle.querySelector('svg:first-child');
+        const mobileGuestMoonIcon = mobileGuestToggle.querySelector('svg:last-child');
+        
+        if (newTheme === 'dark') {
+            mobileGuestToggleSpan.classList.remove('translate-x-1');
+            mobileGuestToggleSpan.classList.add('translate-x-6');
+            mobileGuestSunIcon.classList.add('hidden');
+            mobileGuestSunIcon.classList.remove('block');
+            mobileGuestMoonIcon.classList.remove('hidden');
+            mobileGuestMoonIcon.classList.add('block');
+        } else {
+            mobileGuestToggleSpan.classList.remove('translate-x-6');
+            mobileGuestToggleSpan.classList.add('translate-x-1');
+            mobileGuestSunIcon.classList.remove('hidden');
+            mobileGuestSunIcon.classList.add('block');
+            mobileGuestMoonIcon.classList.add('hidden');
+            mobileGuestMoonIcon.classList.remove('block');
+        }
+    }
+    
+    // Send request to server to persist theme
+    fetch(`/theme/${newTheme}`, {
+        method: 'GET',
+        headers: {
+            'X-Requested-With': 'XMLHttpRequest',
+        }
+    }).catch(error => {
+        console.error('Error updating theme:', error);
+    });
+}
+
 document.addEventListener('DOMContentLoaded', function() {
     // Mobile sidebar functionality
     const openSidebar = document.getElementById('open-sidebar');

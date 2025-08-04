@@ -62,6 +62,9 @@ return [
     'info' => 'Information',
     'language' => 'Language',
     'language_changed' => 'Language changed successfully',
+    'theme' => 'Theme',
+    'light_mode' => 'Light Mode',
+    'dark_mode' => 'Dark Mode',
 
     // User types
     'student' => 'Student',

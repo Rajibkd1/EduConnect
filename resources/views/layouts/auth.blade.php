@@ -110,6 +110,20 @@
         <div class="particle"></div>
     </div>
 
+    <!-- Language Toggle -->
+    <div style="position: absolute; top: 20px; right: 20px; z-index: 20;">
+        <div style="display: flex; gap: 8px; background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px); border-radius: 25px; padding: 4px; border: 1px solid rgba(255, 255, 255, 0.2);">
+            <a href="{{ route('language.switch', 'en') }}" 
+               style="padding: 8px 16px; border-radius: 20px; text-decoration: none; font-size: 14px; font-weight: 500; transition: all 0.3s ease; {{ app()->getLocale() == 'en' ? 'background: rgba(255, 255, 255, 0.2); color: #fff;' : 'color: rgba(255, 255, 255, 0.7);' }}">
+                EN
+            </a>
+            <a href="{{ route('language.switch', 'bn') }}" 
+               style="padding: 8px 16px; border-radius: 20px; text-decoration: none; font-size: 14px; font-weight: 500; transition: all 0.3s ease; {{ app()->getLocale() == 'bn' ? 'background: rgba(255, 255, 255, 0.2); color: #fff;' : 'color: rgba(255, 255, 255, 0.7);' }}">
+                বাং
+            </a>
+        </div>
+    </div>
+
     <!-- Main Content -->
     <div class="auth-container">
         @yield('content')
