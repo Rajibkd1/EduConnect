@@ -4,13 +4,14 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\SignupController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\SearchTutorController;
 
 Route::get('/', function () {
     return view('home');
 })->name('home');
 
 // Signup routes
-Route::get('/signup', function() {
+Route::get('/signup', function () {
     return view('signup');
 })->name('signup.show');
 Route::post('/signup/send-otp', [SignupController::class, 'sendOtp'])->name('signup.sendOtp');
@@ -21,7 +22,7 @@ Route::get('/api/subjects', [SignupController::class, 'getSubjects'])->name('api
 // Login routes - redirect to signup page for combined auth
 Route::get('/login', function () {
     return redirect()->route('signup.show');
-})->name('login.show');
+})->name('login');
 Route::post('/login', [LoginController::class, 'login'])->name('login.perform');
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
@@ -67,9 +68,8 @@ Route::middleware('auth')->group(function () {
     Route::put('/profile', [App\Http\Controllers\ProfileController::class, 'update'])->name('profile.update');
 
     // Student and Guardian routes
-    Route::get('/search-tutor', function () {
-        return view('search-tutor', ['user' => auth()->user()]);
-    })->name('search-tutor');
+    Route::get('/search-tutor', [SearchTutorController::class, 'index'])->name('search-tutor');
+    Route::get('/tutor/{id}', [SearchTutorController::class, 'show'])->name('tutor.show');
 
     Route::get('/sessions', function () {
         return view('sessions', ['user' => auth()->user()]);
