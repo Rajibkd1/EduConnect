@@ -37,13 +37,22 @@ class SignupController extends Controller
     public function sendOtp(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'email' => 'required|string|email|max:255|unique:users',
+            'email' => 'required|string|email|max:255',
         ]);
 
         if ($validator->fails()) {
             return response()->json([
                 'success' => false,
                 'message' => $validator->errors()->first('email')
+            ]);
+        }
+
+        // Check if email already exists
+        $existingUser = User::where('email', $request->email)->first();
+        if ($existingUser) {
+            return response()->json([
+                'success' => false,
+                'message' => __('auth.signup.email_already_exists')
             ]);
         }
 
@@ -71,7 +80,7 @@ class SignupController extends Controller
         } catch (\Exception $e) {
             return response()->json([
                 'success' => false,
-                'message' => 'Failed to send verification code. Please try again.'
+                'message' => __('auth.signup.otp_send_failed')
             ]);
         }
     }

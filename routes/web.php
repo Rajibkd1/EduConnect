@@ -34,6 +34,12 @@ Route::get('/login', function () {
 Route::post('/login', [LoginController::class, 'login'])->name('login.perform');
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
+// Password Reset routes
+Route::get('/forgot-password', [App\Http\Controllers\PasswordResetController::class, 'showForgotPasswordForm'])->name('password.request');
+Route::post('/forgot-password/send-otp', [App\Http\Controllers\PasswordResetController::class, 'sendResetOtp'])->name('password.send-otp');
+Route::post('/forgot-password/verify-otp', [App\Http\Controllers\PasswordResetController::class, 'verifyResetOtp'])->name('password.verify-otp');
+Route::post('/reset-password', [App\Http\Controllers\PasswordResetController::class, 'resetPassword'])->name('password.update');
+
 // Test route to simulate authenticated user for navigation testing
 Route::get('/test-navigation', function () {
     // Create a fake user for testing navigation with all required attributes

@@ -102,7 +102,7 @@
                     </svg>
                 </button>
             </div>
-            <a href="#">{{ __('auth.signin.forgot_password') }}</a>
+            <a href="{{ route('password.request') }}">{{ __('auth.signin.forgot_password') }}</a>
             <button type="submit">{{ __('auth.signin.sign_in_btn') }}</button>
             <div id="login-message" class="message hidden"></div>
             <button type="button" class="mobile-toggle" id="mobileSignUp">{{ __('auth.signin.no_account') }}</button>

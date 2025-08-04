@@ -3,7 +3,7 @@
 return [
     'title' => 'EduConnect - Authentication',
     'tagline' => 'Connect. Learn. Grow.',
-    
+
     'signup' => [
         'create_account' => 'Create Account',
         'email_verification' => 'Enter your email for verification',
@@ -24,8 +24,10 @@ return [
         'confirm_password_placeholder' => 'Confirm Password',
         'create_account_btn' => 'Create Account',
         'back_to_verification' => 'Back to Verification',
+        'email_already_exists' => 'An account with this email address already exists. Please use a different email or sign in to your existing account.',
+        'otp_send_failed' => 'Failed to send verification code. Please try again.',
     ],
-    
+
     'signin' => [
         'title' => 'Sign in',
         'welcome_back' => 'Welcome back to EduConnect',
@@ -35,7 +37,7 @@ return [
         'sign_in_btn' => 'Sign In',
         'no_account' => "Don't have an account? Sign Up",
     ],
-    
+
     'overlay' => [
         'welcome_back_title' => 'Welcome Back to EduConnect!',
         'welcome_back_text' => 'Continue your learning journey with us. Sign in to access your account.',
@@ -43,5 +45,38 @@ return [
         'join_title' => 'Join EduConnect!',
         'join_text' => 'Start your educational journey with us. Create an account to get started.',
         'sign_up_btn' => 'Sign Up',
+    ],
+
+    'password_reset' => [
+        'forgot_password_title' => 'Forgot Password',
+        'forgot_password_instruction' => 'Enter your email address and we\'ll send you a verification code to reset your password.',
+        'send_otp' => 'Send Verification Code',
+        'sending' => 'Sending...',
+        'otp_sent' => 'Verification code has been sent to your email address.',
+        'otp_send_failed' => 'Failed to send verification code. Please try again.',
+        'user_not_found' => 'No account found with this email address. Please check your email or create a new account.',
+        'back_to_login' => 'Back to Login',
+        'remember_password_title' => 'Remember Your Password?',
+        'remember_password_text' => 'If you remember your password, you can sign in to your account.',
+
+        'verify_otp_title' => 'Verify Code',
+        'otp_instruction' => 'Enter the 6-digit code sent to your email',
+        'verify_otp' => 'Verify Code',
+        'verifying' => 'Verifying...',
+        'otp_verified' => 'Code verified successfully!',
+        'invalid_otp' => 'Invalid verification code. Please check and try again.',
+        'otp_expired' => 'Verification code has expired. Please request a new one.',
+        'no_valid_otp' => 'No valid verification found. Please start the process again.',
+
+        'reset_password_title' => 'Reset Password',
+        'reset_password_instruction' => 'Enter your new password below.',
+        'new_password_placeholder' => 'New Password',
+        'confirm_new_password_placeholder' => 'Confirm New Password',
+        'reset_password_btn' => 'Reset Password',
+        'resetting' => 'Resetting...',
+        'password_reset_success' => 'Your password has been reset successfully. You can now sign in with your new password.',
+        'reset_failed' => 'Failed to reset password. Please try again.',
+        'almost_done_title' => 'Almost Done!',
+        'almost_done_text' => 'Enter your new password to complete the reset process.',
     ],
 ];
