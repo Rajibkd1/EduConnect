@@ -11,6 +11,7 @@ use App\Models\User;
 use App\Models\Student;
 use App\Models\Tutor;
 use App\Models\Guardian;
+use App\Models\Subject;
 use App\Models\EmailVerification;
 use Carbon\Carbon;
 use App\Mail\OtpMail;
@@ -20,6 +21,16 @@ class SignupController extends Controller
     public function show()
     {
         return view('signup');
+    }
+
+    // Get all subjects for the frontend
+    public function getSubjects()
+    {
+        $subjects = Subject::orderBy('name')->get();
+        return response()->json([
+            'success' => true,
+            'subjects' => $subjects
+        ]);
     }
 
     // Step 1: Send OTP to email

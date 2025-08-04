@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\Rule;
+use App\Models\Subject;
 
 class ProfileController extends Controller
 {
@@ -14,17 +15,21 @@ class ProfileController extends Controller
     {
         $user = Auth::user();
         $profile = null;
+        $subjects = [];
+        $tutorSubjects = [];
 
         // Get the specific profile based on user type
         if ($user->user_type === 'student') {
             $profile = $user->student;
         } elseif ($user->user_type === 'tutor') {
             $profile = $user->tutor;
+            $subjects = Subject::orderBy('name')->get();
+            $tutorSubjects = $profile ? $profile->subjects->pluck('id')->toArray() : [];
         } elseif ($user->user_type === 'guardian') {
             $profile = $user->guardian;
         }
 
-        return view('profile', compact('user', 'profile'));
+        return view('profile', compact('user', 'profile', 'subjects', 'tutorSubjects'));
     }
 
     public function update(Request $request)
@@ -60,6 +65,8 @@ class ProfileController extends Controller
                 'bio' => 'nullable|string',
                 'qualifications' => 'nullable|string',
                 'experience_years' => 'nullable|integer|min:0',
+                'subjects' => 'nullable|array',
+                'subjects.*' => 'exists:subjects,id',
             ]);
         } elseif ($user->user_type === 'guardian') {
             $rules = array_merge($rules, [
@@ -161,10 +168,18 @@ class ProfileController extends Controller
                 $profileData['university_id_image'] = $request->file('university_id_image')->store('university_ids', 'public');
             }
 
-            $user->tutor()->updateOrCreate(
+            $tutor = $user->tutor()->updateOrCreate(
                 ['user_id' => $user->id],
                 $profileData
             );
+
+            // Update tutor subjects
+            if ($request->has('subjects')) {
+                $tutor->subjects()->sync($request->subjects);
+            } else {
+                // If no subjects selected, remove all
+                $tutor->subjects()->detach();
+            }
         } elseif ($user->user_type === 'guardian') {
             $profileData = [
                 'child_name' => $validated['child_name'] ?? null,

@@ -16,6 +16,7 @@ Route::get('/signup', function() {
 Route::post('/signup/send-otp', [SignupController::class, 'sendOtp'])->name('signup.sendOtp');
 Route::post('/signup/verify-otp', [SignupController::class, 'verifyOtp'])->name('signup.verifyOtp');
 Route::post('/signup', [SignupController::class, 'store'])->name('signup.store');
+Route::get('/api/subjects', [SignupController::class, 'getSubjects'])->name('api.subjects');
 
 // Login routes - redirect to signup page for combined auth
 Route::get('/login', function () {
