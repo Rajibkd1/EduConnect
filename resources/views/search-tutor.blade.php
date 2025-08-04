@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Search Tutor - EduConnect')
+@section('title', __('search_tutor.title'))
 
 @section('content')
     <div class="min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50">
@@ -8,8 +8,8 @@
         <div class="bg-gradient-to-r from-indigo-600 to-purple-600 shadow-lg">
             <div class="px-6 py-8">
                 <div class="max-w-7xl mx-auto">
-                    <h1 class="text-3xl font-bold text-white mb-2">Search Tutors</h1>
-                    <p class="text-indigo-100">Find the perfect tutor for your learning needs</p>
+                    <h1 class="text-3xl font-bold text-white mb-2">{{ __('search_tutor.page_title') }}</h1>
+                    <p class="text-indigo-100">{{ __('search_tutor.page_description') }}</p>
                 </div>
             </div>
         </div>
@@ -21,10 +21,10 @@
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                         <!-- Subject Filter -->
                         <div>
-                            <label for="subject" class="block text-sm font-medium text-gray-700 mb-2">Subject</label>
+                            <label for="subject" class="block text-sm font-medium text-gray-700 mb-2">{{ __('search_tutor.filters.subject') }}</label>
                             <select id="subject" name="subject"
                                 class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all duration-200">
-                                <option value="">All Subjects</option>
+                                <option value="">{{ __('search_tutor.filters.all_subjects') }}</option>
                                 @foreach ($subjects as $subject)
                                     <option value="{{ $subject->id }}"
                                         {{ request('subject') == $subject->id ? 'selected' : '' }}>
@@ -36,25 +36,25 @@
 
                         <!-- Search by Name -->
                         <div>
-                            <label for="search" class="block text-sm font-medium text-gray-700 mb-2">Tutor Name</label>
+                            <label for="search" class="block text-sm font-medium text-gray-700 mb-2">{{ __('search_tutor.filters.tutor_name') }}</label>
                             <input type="text" id="search" name="search" value="{{ request('search') }}"
-                                placeholder="Search by name..."
+                                placeholder="{{ __('search_tutor.filters.search_by_name') }}"
                                 class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all duration-200">
                         </div>
 
                         <!-- University Filter -->
                         <div>
-                            <label for="university" class="block text-sm font-medium text-gray-700 mb-2">University</label>
+                            <label for="university" class="block text-sm font-medium text-gray-700 mb-2">{{ __('search_tutor.filters.university') }}</label>
                             <input type="text" id="university" name="university" value="{{ request('university') }}"
-                                placeholder="University name..."
+                                placeholder="{{ __('search_tutor.filters.university_placeholder') }}"
                                 class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all duration-200">
                         </div>
 
                         <!-- Department Filter -->
                         <div>
-                            <label for="department" class="block text-sm font-medium text-gray-700 mb-2">Department</label>
+                            <label for="department" class="block text-sm font-medium text-gray-700 mb-2">{{ __('search_tutor.filters.department') }}</label>
                             <input type="text" id="department" name="department" value="{{ request('department') }}"
-                                placeholder="Department..."
+                                placeholder="{{ __('search_tutor.filters.department_placeholder') }}"
                                 class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all duration-200">
                         </div>
                     </div>
@@ -63,17 +63,13 @@
                         <div class="flex items-center space-x-6">
                             <!-- Minimum Rating Filter -->
                             <div>
-                                <label for="min_rating" class="block text-sm font-medium text-gray-700 mb-2">Minimum
-                                    Rating</label>
+                                <label for="min_rating" class="block text-sm font-medium text-gray-700 mb-2">{{ __('search_tutor.filters.minimum_rating') }}</label>
                                 <select id="min_rating" name="min_rating"
                                     class="px-4 py-2 border-2 border-gray-200 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500">
-                                    <option value="">Any Rating</option>
-                                    <option value="4" {{ request('min_rating') == '4' ? 'selected' : '' }}>4+ Stars
-                                    </option>
-                                    <option value="3" {{ request('min_rating') == '3' ? 'selected' : '' }}>3+ Stars
-                                    </option>
-                                    <option value="2" {{ request('min_rating') == '2' ? 'selected' : '' }}>2+ Stars
-                                    </option>
+                                    <option value="">{{ __('search_tutor.filters.any_rating') }}</option>
+                                    <option value="4" {{ request('min_rating') == '4' ? 'selected' : '' }}>{{ __('search_tutor.filters.4_plus_stars') }}</option>
+                                    <option value="3" {{ request('min_rating') == '3' ? 'selected' : '' }}>{{ __('search_tutor.filters.3_plus_stars') }}</option>
+                                    <option value="2" {{ request('min_rating') == '2' ? 'selected' : '' }}>{{ __('search_tutor.filters.2_plus_stars') }}</option>
                                 </select>
                             </div>
                         </div>
@@ -81,7 +77,7 @@
                         <div class="flex space-x-4">
                             <a href="{{ route('search-tutor') }}"
                                 class="px-6 py-3 bg-gray-200 text-gray-700 rounded-xl hover:bg-gray-300 transition-colors">
-                                Clear Filters
+                                {{ __('search_tutor.filters.clear_filters') }}
                             </a>
                             <button type="submit"
                                 class="px-8 py-3 bg-gradient-to-r from-indigo-600 to-purple-600 text-white rounded-xl hover:from-indigo-700 hover:to-purple-700 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5">
@@ -89,7 +85,7 @@
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                         d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
                                 </svg>
-                                Search
+                                {{ __('search_tutor.filters.search') }}
                             </button>
                         </div>
                     </div>
@@ -99,9 +95,8 @@
             <!-- Search Results -->
             <div class="space-y-6">
                 <div class="flex justify-between items-center">
-                    <h2 class="text-2xl font-bold text-gray-900">Available Tutors</h2>
-                    <p class="text-sm text-gray-500">{{ $tutors->total() }} tutor{{ $tutors->total() !== 1 ? 's' : '' }}
-                        found</p>
+                    <h2 class="text-2xl font-bold text-gray-900">{{ __('search_tutor.results.available_tutors') }}</h2>
+                    <p class="text-sm text-gray-500">{{ $tutors->total() }} {{ $tutors->total() !== 1 ? __('search_tutor.results.tutors_found_plural') : __('search_tutor.results.tutors_found') }} {{ __('search_tutor.results.found') }}</p>
                 </div>
 
                 @if ($tutors->count() > 0)
@@ -154,7 +149,7 @@
                                                 @endfor
                                             </div>
                                             <span class="text-gray-600">{{ number_format($tutor->rating, 1) }}
-                                                rating</span>
+                                                {{ __('search_tutor.results.rating') }}</span>
                                         </div>
                                     @endif
 
@@ -165,7 +160,7 @@
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                                     d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                                             </svg>
-                                            {{ $tutor->experience_years }}+ years experience
+                                            {{ $tutor->experience_years }}+ {{ __('search_tutor.results.years_experience') }}
                                         </div>
                                     @endif
 
@@ -176,7 +171,7 @@
                                                 <path
                                                     d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a.999.999 0 01.356-.257l4-1.714a1 1 0 11.788 1.838L7.667 9.088l1.94.831a1 1 0 00.787 0l7-3a1 1 0 000-1.838l-7-3z" />
                                             </svg>
-                                            {{ $tutor->semester }} Semester
+                                            {{ $tutor->semester }} {{ __('search_tutor.results.semester') }}
                                         </div>
                                     @endif
                                 </div>
@@ -184,7 +179,7 @@
                                 <!-- Subjects -->
                                 @if ($tutor->subjects->count() > 0)
                                     <div class="mb-4">
-                                        <p class="text-xs font-medium text-gray-700 mb-2">Subjects:</p>
+                                        <p class="text-xs font-medium text-gray-700 mb-2">{{ __('search_tutor.results.subjects') }}</p>
                                         <div class="flex flex-wrap gap-2">
                                             @foreach ($tutor->subjects->take(3) as $subject)
                                                 <span
@@ -194,7 +189,7 @@
                                             @endforeach
                                             @if ($tutor->subjects->count() > 3)
                                                 <span class="px-3 py-1 bg-gray-100 text-gray-600 text-xs rounded-full">
-                                                    +{{ $tutor->subjects->count() - 3 }} more
+                                                    +{{ $tutor->subjects->count() - 3 }} {{ __('search_tutor.results.more') }}
                                                 </span>
                                             @endif
                                         </div>
@@ -208,7 +203,7 @@
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                             d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                                     </svg>
-                                    View Profile
+                                    {{ __('search_tutor.results.view_profile') }}
                                 </a>
                             </div>
                         @endforeach
@@ -230,15 +225,15 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                     d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
                             </svg>
-                            <h3 class="text-xl font-bold text-gray-900 mb-3">No tutors found</h3>
-                            <p class="text-gray-600 mb-6">Try adjusting your search criteria to find more tutors.</p>
+                            <h3 class="text-xl font-bold text-gray-900 mb-3">{{ __('search_tutor.empty_state.no_tutors_found') }}</h3>
+                            <p class="text-gray-600 mb-6">{{ __('search_tutor.empty_state.adjust_criteria') }}</p>
                             <a href="{{ route('search-tutor') }}"
                                 class="inline-flex items-center px-6 py-3 bg-gradient-to-r from-indigo-600 to-purple-600 text-white rounded-xl hover:from-indigo-700 hover:to-purple-700 transition-all duration-200 shadow-lg hover:shadow-xl">
                                 <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                         d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
                                 </svg>
-                                Clear All Filters
+                                {{ __('search_tutor.empty_state.clear_all_filters') }}
                             </a>
                         </div>
                     </div>

@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Dashboard - EduConnect')
+@section('title', __('pages.dashboard.title') . ' - ' . __('navigation.educonnect'))
 
 @section('content')
     <!-- Main Content Area with Clean Background -->
@@ -9,9 +9,10 @@
             <!-- Welcome Header -->
             <div class="mb-6 sm:mb-8">
                 <h1 class="text-2xl sm:text-3xl font-bold text-gray-900 mb-2">
-                    Welcome back, {{ auth()->user()->name }}!
+                    {{ __('pages.dashboard.welcome', ['name' => auth()->user()->name]) }}
                 </h1>
-                <p class="text-gray-600 text-sm sm:text-base">Here's your {{ ucfirst(auth()->user()->user_type) }} dashboard overview</p>
+                <p class="text-gray-600 text-sm sm:text-base">
+                    {{ __('ui.dashboard_overview', ['type' => ucfirst(auth()->user()->user_type)]) }}</p>
             </div>
 
             <!-- Enhanced User Info Card - Mobile Responsive -->
@@ -77,7 +78,7 @@
                                             d="M8 7V3a4 4 0 118 0v4m-4 8a2 2 0 100-4m0 4a2 2 0 100 4m0-4v4m0-4H4m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1">
                                         </path>
                                     </svg>
-                                    Member since {{ auth()->user()->created_at->format('M j, Y') }}
+                                    {{ __('dashboard.member_since', ['date' => auth()->user()->created_at->format('M j, Y')]) }}
                                 </p>
                             </div>
                         </div>
@@ -92,7 +93,7 @@
                                 <div class="text-xl font-bold text-gray-900 mb-1 text-center">
                                     {{ $dhakaTime->format('h:i A') }}</div>
                                 <div class="text-gray-600 text-sm text-center">{{ $dhakaTime->format('M j, Y') }}</div>
-                                <div class="text-xs text-blue-600 mt-1 text-center">Dhaka, Bangladesh</div>
+                                <div class="text-xs text-blue-600 mt-1 text-center">{{ __('dashboard.dhaka_bangladesh') }}</div>
                             </div>
                         </div>
                     </div>
@@ -142,7 +143,7 @@
                                             d="M8 7V3a4 4 0 118 0v4m-4 8a2 2 0 100-4m0 4a2 2 0 100 4m0-4v4m0-4H4m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1">
                                         </path>
                                     </svg>
-                                    Member since {{ auth()->user()->created_at->format('F j, Y') }}
+                                    {{ __('dashboard.member_since', ['date' => auth()->user()->created_at->format('F j, Y')]) }}
                                 </p>
                             </div>
                         </div>
@@ -156,7 +157,7 @@
                                 <div class="text-xl lg:text-2xl font-bold text-gray-900 mb-1">
                                     {{ $dhakaTime->format('h:i A') }}</div>
                                 <div class="text-gray-600 text-sm">{{ $dhakaTime->format('M j, Y') }}</div>
-                                <div class="text-xs text-blue-600 mt-1">Dhaka, Bangladesh</div>
+                                <div class="text-xs text-blue-600 mt-1">{{ __('dashboard.dhaka_bangladesh') }}</div>
                             </div>
                         </div>
                     </div>
@@ -176,7 +177,7 @@
                                 </svg>
                             </div>
                             <div class="ml-4">
-                                <p class="text-sm font-medium text-gray-600 mb-1">Upcoming Sessions</p>
+                                <p class="text-sm font-medium text-gray-600 mb-1">{{ __('dashboard.stats.upcoming_sessions') }}</p>
                                 <p class="text-2xl font-bold text-gray-900">0</p>
                                 <div class="w-full bg-gray-200 rounded-full h-2 mt-2">
                                     <div class="bg-blue-600 h-2 rounded-full" style="width: 0%"></div>
@@ -196,7 +197,7 @@
                                 </svg>
                             </div>
                             <div class="ml-4">
-                                <p class="text-sm font-medium text-gray-600 mb-1">Completed Sessions</p>
+                                <p class="text-sm font-medium text-gray-600 mb-1">{{ __('dashboard.stats.completed_sessions') }}</p>
                                 <p class="text-2xl font-bold text-gray-900">0</p>
                                 <div class="w-full bg-gray-200 rounded-full h-2 mt-2">
                                     <div class="bg-green-600 h-2 rounded-full" style="width: 0%"></div>
@@ -217,7 +218,7 @@
                                 </svg>
                             </div>
                             <div class="ml-4">
-                                <p class="text-sm font-medium text-gray-600 mb-1">Total Earnings</p>
+                                <p class="text-sm font-medium text-gray-600 mb-1">{{ __('dashboard.stats.total_earnings') }}</p>
                                 <p class="text-2xl font-bold text-gray-900">$0</p>
                                 <div class="w-full bg-gray-200 rounded-full h-2 mt-2">
                                     <div class="bg-indigo-600 h-2 rounded-full" style="width: 0%"></div>
@@ -237,7 +238,7 @@
                                 </svg>
                             </div>
                             <div class="ml-4">
-                                <p class="text-sm font-medium text-gray-600 mb-1">Upcoming Sessions</p>
+                                <p class="text-sm font-medium text-gray-600 mb-1">{{ __('dashboard.stats.upcoming_sessions') }}</p>
                                 <p class="text-2xl font-bold text-gray-900">0</p>
                                 <div class="w-full bg-gray-200 rounded-full h-2 mt-2">
                                     <div class="bg-blue-600 h-2 rounded-full" style="width: 0%"></div>
@@ -257,7 +258,7 @@
                                 </svg>
                             </div>
                             <div class="ml-4">
-                                <p class="text-sm font-medium text-gray-600 mb-1">Completed Sessions</p>
+                                <p class="text-sm font-medium text-gray-600 mb-1">{{ __('dashboard.stats.completed_sessions') }}</p>
                                 <p class="text-2xl font-bold text-gray-900">0</p>
                                 <div class="w-full bg-gray-200 rounded-full h-2 mt-2">
                                     <div class="bg-green-600 h-2 rounded-full" style="width: 0%"></div>
@@ -277,7 +278,7 @@
                                 </svg>
                             </div>
                             <div class="ml-4">
-                                <p class="text-sm font-medium text-gray-600 mb-1">Available Tutors</p>
+                                <p class="text-sm font-medium text-gray-600 mb-1">{{ __('dashboard.stats.available_tutors') }}</p>
                                 <p class="text-2xl font-bold text-gray-900">0</p>
                                 <div class="w-full bg-gray-200 rounded-full h-2 mt-2">
                                     <div class="bg-orange-600 h-2 rounded-full" style="width: 0%"></div>
@@ -291,10 +292,10 @@
             <!-- Recent Activity -->
             <div class="bg-white rounded-lg p-6 shadow-sm border border-gray-200">
                 <div class="flex items-center justify-between mb-6">
-                    <h3 class="text-xl font-semibold text-gray-900">Recent Activity</h3>
+                    <h3 class="text-xl font-semibold text-gray-900">{{ __('dashboard.activity.title') }}</h3>
                     <div class="flex items-center space-x-2">
                         <div class="w-2 h-2 bg-green-500 rounded-full"></div>
-                        <span class="text-sm text-gray-500">Live Updates</span>
+                        <span class="text-sm text-gray-500">{{ __('dashboard.activity.live_updates') }}</span>
                     </div>
                 </div>
 
@@ -307,8 +308,8 @@
                             </path>
                         </svg>
                     </div>
-                    <h4 class="text-lg font-medium text-gray-900 mb-2">No recent activity to display</h4>
-                    <p class="text-gray-500 mb-6">Your activity will appear here once you start using EduConnect</p>
+                    <h4 class="text-lg font-medium text-gray-900 mb-2">{{ __('dashboard.activity.no_activity') }}</h4>
+                    <p class="text-gray-500 mb-6">{{ __('dashboard.activity.activity_description') }}</p>
 
                     @if (auth()->user()->user_type === 'student')
                         <a href="{{ route('search-tutor') }}"
@@ -317,7 +318,7 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                     d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
                             </svg>
-                            Find a Tutor
+                            {{ __('dashboard.activity.find_tutor') }}
                         </a>
                     @else
                         <a href="{{ route('profile.show') }}"
@@ -326,7 +327,7 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                     d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
                             </svg>
-                            Complete Profile
+                            {{ __('dashboard.activity.complete_profile') }}
                         </a>
                     @endif
                 </div>

@@ -5,10 +5,15 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\SignupController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\SearchTutorController;
+use App\Http\Controllers\LanguageController;
 
 Route::get('/', function () {
     return view('home');
 })->name('home');
+
+// Language switching routes
+Route::get('/language/{locale}', [LanguageController::class, 'switch'])->name('language.switch');
+Route::get('/api/language/current', [LanguageController::class, 'current'])->name('language.current');
 
 // Signup routes
 Route::get('/signup', function () {

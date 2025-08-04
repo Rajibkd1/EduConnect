@@ -60,6 +60,23 @@
                 </div>
             </div>
 
+            <!-- Mobile Language Toggle -->
+            <div class="px-6 py-4 border-b border-slate-700">
+                <div class="flex items-center justify-between">
+                    <span class="text-sm text-slate-300">{{ __('ui.language') }}</span>
+                    <div class="flex items-center space-x-2">
+                        <a href="{{ route('language.switch', 'en') }}" 
+                           class="px-2 py-1 text-xs rounded {{ app()->getLocale() == 'en' ? 'bg-blue-600 text-white' : 'text-slate-300 hover:text-white' }}">
+                            EN
+                        </a>
+                        <a href="{{ route('language.switch', 'bn') }}" 
+                           class="px-2 py-1 text-xs rounded {{ app()->getLocale() == 'bn' ? 'bg-blue-600 text-white' : 'text-slate-300 hover:text-white' }}">
+                            বাং
+                        </a>
+                    </div>
+                </div>
+            </div>
+
             <!-- Mobile Navigation Items -->
             <nav class="mt-4 px-3 flex-1 space-y-1">
                 @foreach (auth()->user()->getNavigationItems() as $item)
@@ -109,8 +126,25 @@
                         </svg>
                     </div>
                     <a href="{{ route('home') }}" class="text-xl font-bold text-white">
-                        EduConnect
+                        {{ __('navigation.educonnect') }}
                     </a>
+                </div>
+            </div>
+
+            <!-- Language Toggle -->
+            <div class="px-6 py-4 border-b border-slate-700">
+                <div class="flex items-center justify-between">
+                    <span class="text-sm text-slate-300">{{ __('ui.language') }}</span>
+                    <div class="flex items-center space-x-2">
+                        <a href="{{ route('language.switch', 'en') }}" 
+                           class="px-2 py-1 text-xs rounded {{ app()->getLocale() == 'en' ? 'bg-blue-600 text-white' : 'text-slate-300 hover:text-white' }}">
+                            EN
+                        </a>
+                        <a href="{{ route('language.switch', 'bn') }}" 
+                           class="px-2 py-1 text-xs rounded {{ app()->getLocale() == 'bn' ? 'bg-blue-600 text-white' : 'text-slate-300 hover:text-white' }}">
+                            বাং
+                        </a>
+                    </div>
                 </div>
             </div>
 
@@ -242,8 +276,20 @@
                     </div>
                 </div>
 
-                <!-- Auth Buttons -->
+                <!-- Language Toggle and Auth Buttons -->
                 <div class="flex items-center space-x-4">
+                    <!-- Language Toggle -->
+                    <div class="flex items-center space-x-2 bg-slate-700 rounded-lg p-1">
+                        <a href="{{ route('language.switch', 'en') }}" 
+                           class="px-3 py-1 text-sm font-medium rounded-md transition-colors duration-200 {{ app()->getLocale() === 'en' ? 'bg-slate-600 text-white' : 'text-slate-300 hover:text-white' }}">
+                            EN
+                        </a>
+                        <a href="{{ route('language.switch', 'bn') }}" 
+                           class="px-3 py-1 text-sm font-medium rounded-md transition-colors duration-200 {{ app()->getLocale() === 'bn' ? 'bg-slate-600 text-white' : 'text-slate-300 hover:text-white' }}">
+                            বাং
+                        </a>
+                    </div>
+                    
                     <a href="{{ route('signup.show') }}"
                         class="text-slate-300 hover:text-white px-3 py-2 text-sm font-medium transition-colors duration-200">Sign In</a>
                     <a href="{{ route('signup.show') }}"

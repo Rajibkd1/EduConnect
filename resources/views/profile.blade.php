@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'My Profile - EduConnect')
+@section('title', __('profile.title'))
 
 @section('content')
     <div class="min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50">
@@ -108,7 +108,7 @@
                                             d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z"
                                             clip-rule="evenodd" />
                                     </svg>
-                                    Member since {{ $user->created_at->format('F j, Y') }}
+                                    {{ __('profile.member_since', ['date' => $user->created_at->format('F j, Y')]) }}
                                 </p>
                             </div>
                         </div>
@@ -122,7 +122,7 @@
                                         d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z">
                                     </path>
                                 </svg>
-                                Edit Profile
+                                {{ __('profile.edit_profile') }}
                             </button>
 
                             <button id="cancel-edit-btn" style="display: none;"
@@ -131,7 +131,7 @@
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                         d="M6 18L18 6M6 6l12 12"></path>
                                 </svg>
-                                Cancel
+                                {{ __('profile.cancel') }}
                             </button>
                         </div>
                     </div>
@@ -178,9 +178,9 @@
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                         d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                                 </svg>
-                                Basic Information
+                                {{ __('profile.basic_info.title') }}
                             </h2>
-                            <p class="text-indigo-100 text-sm mt-1">Your account details and contact information</p>
+                            <p class="text-indigo-100 text-sm mt-1">{{ __('profile.basic_info.description') }}</p>
                         </div>
 
                         <div class="p-6 space-y-6">
@@ -204,20 +204,19 @@
                                 </div>
                                 <div class="flex-1">
                                     <label for="profile_image" class="block text-sm font-medium text-gray-700 mb-2">
-                                        Profile Picture
+                                        {{ __('profile.basic_info.profile_picture') }}
                                     </label>
                                     <input type="file" id="profile_image" name="profile_image" accept="image/*"
                                         disabled
                                         class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl text-gray-900 bg-gray-50 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all duration-200 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-medium file:bg-indigo-50 file:text-indigo-700 hover:file:bg-indigo-100">
-                                    <p class="text-xs text-gray-500 mt-2">Upload a profile picture (JPG, PNG, GIF - Max
-                                        2MB)</p>
+                                    <p class="text-xs text-gray-500 mt-2">{{ __('profile.basic_info.profile_picture_help') }}</p>
                                 </div>
                             </div>
 
                             <!-- Full Name -->
                             <div>
                                 <label for="name" class="block text-sm font-medium text-gray-700 mb-2">
-                                    Full Name <span class="text-red-500">*</span>
+                                    {{ __('profile.basic_info.full_name') }} <span class="text-red-500">*</span>
                                 </label>
                                 <input type="text" id="name" name="name" value="{{ $user->name }}" readonly
                                     class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl text-gray-900 bg-gray-50 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all duration-200">
@@ -227,18 +226,18 @@
                                 <!-- Phone Number -->
                                 <div>
                                     <label for="phone_number" class="block text-sm font-medium text-gray-700 mb-2">
-                                        Phone Number
+                                        {{ __('profile.basic_info.phone_number') }}
                                     </label>
                                     <input type="tel" id="phone_number" name="phone_number"
                                         value="{{ $profile->phone_number ?? '' }}" readonly
-                                        placeholder="Enter your phone number"
+                                        placeholder="{{ __('profile.basic_info.phone_placeholder') }}"
                                         class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl text-gray-900 bg-gray-50 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all duration-200">
                                 </div>
 
                                 <!-- Account Type -->
                                 <div>
                                     <label for="user_type" class="block text-sm font-medium text-gray-700 mb-2">
-                                        Account Type
+                                        {{ __('profile.basic_info.account_type') }}
                                     </label>
                                     <input type="text" id="user_type" value="{{ ucfirst($user->user_type) }}"
                                         readonly
@@ -249,7 +248,7 @@
                             <!-- Email Address -->
                             <div>
                                 <label for="email" class="block text-sm font-medium text-gray-700 mb-2">
-                                    Email Address
+                                    {{ __('profile.basic_info.email_address') }}
                                 </label>
                                 <div class="relative">
                                     <input type="email" id="email" name="email" value="{{ $user->email }}"
@@ -264,7 +263,7 @@
                                         </svg>
                                     </div>
                                 </div>
-                                <p class="text-xs text-gray-500 mt-2">Email cannot be changed for security reasons</p>
+                                <p class="text-xs text-gray-500 mt-2">{{ __('profile.basic_info.email_locked') }}</p>
                             </div>
                         </div>
                     </div>
@@ -279,9 +278,9 @@
                                         <path
                                             d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a.999.999 0 01.356-.257l4-1.714a1 1 0 11.788 1.838L7.667 9.088l1.94.831a1 1 0 00.787 0l7-3a1 1 0 000-1.838l-7-3z" />
                                     </svg>
-                                    Student Information
+                                    {{ __('profile.student_info.title') }}
                                 </h2>
-                                <p class="text-blue-100 text-sm mt-1">Your academic details and educational background</p>
+                                <p class="text-blue-100 text-sm mt-1">{{ __('profile.student_info.description') }}</p>
                             </div>
 
                             <div class="p-6 space-y-6">
@@ -289,7 +288,7 @@
                                     <!-- Birth Date -->
                                     <div>
                                         <label for="birth_date" class="block text-sm font-medium text-gray-700 mb-2">
-                                            Birth Date
+                                            {{ __('profile.student_info.birth_date') }}
                                         </label>
                                         <input type="date" id="birth_date" name="birth_date"
                                             value="{{ $profile->birth_date ?? '' }}" readonly
@@ -300,11 +299,11 @@
                                     <div>
                                         <label for="educational_level"
                                             class="block text-sm font-medium text-gray-700 mb-2">
-                                            Educational Level
+                                            {{ __('profile.student_info.educational_level') }}
                                         </label>
                                         <input type="text" id="educational_level" name="educational_level"
                                             value="{{ $profile->educational_level ?? '' }}" readonly
-                                            placeholder="e.g., High School, Undergraduate, etc."
+                                            placeholder="{{ __('profile.student_info.educational_level_placeholder') }}"
                                             class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl text-gray-900 bg-gray-50 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200">
                                     </div>
                                 </div>
@@ -314,11 +313,11 @@
                                     <div>
                                         <label for="current_study_class"
                                             class="block text-sm font-medium text-gray-700 mb-2">
-                                            Current Study Class
+                                            {{ __('profile.student_info.current_study_class') }}
                                         </label>
                                         <input type="text" id="current_study_class" name="current_study_class"
                                             value="{{ $profile->current_study_class ?? '' }}" readonly
-                                            placeholder="e.g., Grade 12, Year 2, etc."
+                                            placeholder="{{ __('profile.student_info.current_study_class_placeholder') }}"
                                             class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl text-gray-900 bg-gray-50 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200">
                                     </div>
 
@@ -326,11 +325,11 @@
                                     <div>
                                         <label for="school_college_name"
                                             class="block text-sm font-medium text-gray-700 mb-2">
-                                            School/College Name
+                                            {{ __('profile.student_info.school_college_name') }}
                                         </label>
                                         <input type="text" id="school_college_name" name="school_college_name"
                                             value="{{ $profile->school_college_name ?? '' }}" readonly
-                                            placeholder="Your institution name"
+                                            placeholder="{{ __('profile.student_info.school_college_placeholder') }}"
                                             class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl text-gray-900 bg-gray-50 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200">
                                     </div>
                                 </div>
@@ -338,9 +337,9 @@
                                 <!-- Address -->
                                 <div>
                                     <label for="address" class="block text-sm font-medium text-gray-700 mb-2">
-                                        Address
+                                        {{ __('profile.student_info.address') }}
                                     </label>
-                                    <textarea id="address" name="address" rows="3" readonly placeholder="Your full address"
+                                    <textarea id="address" name="address" rows="3" readonly placeholder="{{ __('profile.student_info.address_placeholder') }}"
                                         class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl text-gray-900 bg-gray-50 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 resize-none">{{ $profile->address ?? '' }}</textarea>
                                 </div>
                             </div>
@@ -355,9 +354,9 @@
                                             d="M6 6V5a3 3 0 013-3h2a3 3 0 013 3v1h2a2 2 0 012 2v3.57A22.952 22.952 0 0110 13a22.95 22.95 0 01-8-1.43V8a2 2 0 012-2h2zm2-1a1 1 0 011-1h2a1 1 0 011 1v1H8V5zm1 5a1 1 0 011-1h.01a1 1 0 110 2H10a1 1 0 01-1-1z"
                                             clip-rule="evenodd" />
                                     </svg>
-                                    Tutor Information
+                                    {{ __('profile.tutor_info.title') }}
                                 </h2>
-                                <p class="text-purple-100 text-sm mt-1">Your academic credentials and teaching details</p>
+                                <p class="text-purple-100 text-sm mt-1">{{ __('profile.tutor_info.description') }}</p>
                             </div>
 
                             <div class="p-6 space-y-6">
@@ -365,22 +364,22 @@
                                     <!-- University Name -->
                                     <div>
                                         <label for="university_name" class="block text-sm font-medium text-gray-700 mb-2">
-                                            University Name
+                                            {{ __('profile.tutor_info.university_name') }}
                                         </label>
                                         <input type="text" id="university_name" name="university_name"
                                             value="{{ $profile->university_name ?? '' }}" readonly
-                                            placeholder="Your university name"
+                                            placeholder="{{ __('profile.tutor_info.university_name_placeholder') }}"
                                             class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl text-gray-900 bg-gray-50 focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition-all duration-200">
                                     </div>
 
                                     <!-- University ID -->
                                     <div>
                                         <label for="university_id" class="block text-sm font-medium text-gray-700 mb-2">
-                                            University ID
+                                            {{ __('profile.tutor_info.university_id') }}
                                         </label>
                                         <input type="text" id="university_id" name="university_id"
                                             value="{{ $profile->university_id ?? '' }}" readonly
-                                            placeholder="Your student ID"
+                                            placeholder="{{ __('profile.tutor_info.university_id_placeholder') }}"
                                             class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl text-gray-900 bg-gray-50 focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition-all duration-200">
                                     </div>
                                 </div>
@@ -389,22 +388,22 @@
                                     <!-- Department -->
                                     <div>
                                         <label for="department" class="block text-sm font-medium text-gray-700 mb-2">
-                                            Department
+                                            {{ __('profile.tutor_info.department') }}
                                         </label>
                                         <input type="text" id="department" name="department"
                                             value="{{ $profile->department ?? '' }}" readonly
-                                            placeholder="Your department"
+                                            placeholder="{{ __('profile.tutor_info.department_placeholder') }}"
                                             class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl text-gray-900 bg-gray-50 focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition-all duration-200">
                                     </div>
 
                                     <!-- Semester -->
                                     <div>
                                         <label for="semester" class="block text-sm font-medium text-gray-700 mb-2">
-                                            Semester
+                                            {{ __('profile.tutor_info.semester') }}
                                         </label>
                                         <input type="text" id="semester" name="semester"
                                             value="{{ $profile->semester ?? '' }}" readonly
-                                            placeholder="Current semester"
+                                            placeholder="{{ __('profile.tutor_info.semester_placeholder') }}"
                                             class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl text-gray-900 bg-gray-50 focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition-all duration-200">
                                     </div>
                                 </div>
