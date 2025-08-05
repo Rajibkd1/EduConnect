@@ -214,64 +214,7 @@ php artisan reverb:start
 
 ---
 
-<div align="center">
 
-## 📊 **Database Architecture**
-
-</div>
-
-🗃️ View Database Schema
-
-```
-erDiagram
-    USERS ||--|| STUDENTS : "has"
-    USERS ||--|| TUTORS : "has"
-    USERS ||--|| GUARDIANS : "has"
-    USERS ||--|| ADMINS : "has"
-    USERS ||--|| SUPPORT_STAFF : "has"
-    USERS ||--|| DEVELOPERS : "has"
-    TUTORS ||--o{ SESSIONS : "conducts"
-    STUDENTS ||--o{ SESSIONS : "attends"
-    SESSIONS ||--o{ MESSAGES : "contains"
-    TUTORS }o--o{ SUBJECTS : "teaches"
-    SESSIONS ||--o{ FEEDBACK : "receives"
-    GUARDIANS }o--o{ STUDENTS : "monitors"
-    USERS ||--o{ NOTIFICATIONS : "receives"
-    STUDENTS ||--o{ SESSION_REQUESTS : "makes"
-    TUTORS ||--o{ SESSION_REQUESTS : "receives"
-```
-
-**Core Tables:** Users, Students, Tutors, Guardians, Admins, Support Staff, Developers, Sessions, Messages, Feedback, Notifications, Session Requests, Subjects
-
----
-
-## 🆕 **Laravel 12 Specific Features**
-
-### ⚡ **Enhanced Performance**
-
--   Improved query performance with Laravel 12 optimizations
--   Better memory management for large datasets
--   Enhanced caching mechanisms
-
-### 🔐 **Security Improvements**
-
--   Advanced authentication with Laravel Fortify
--   Enhanced CSRF protection
--   Improved rate limiting
-
-### 🌐 **Real-time Capabilities**
-
--   Laravel Reverb for WebSocket connections
--   Real-time notifications and messaging
--   Live session updates
-
-### 🧪 **Testing Framework**
-
--   Pest 3.x integration
--   Enhanced testing utilities
--   Better mocking capabilities
-
----
 
 ## 🤝 **Contributing**
 
