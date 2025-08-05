@@ -9,23 +9,105 @@
 @section('content')
 
     <!-- Hero Section -->
-    <section class="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-50 via-white to-gray-100 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 hero-pattern">
-        <!-- Floating Elements -->
+    <section class="relative min-h-screen flex items-center justify-center bg-white dark:bg-gray-900 hero-pattern">
+        <!-- Floating Educational Icons -->
         <div class="absolute inset-0 overflow-hidden pointer-events-none">
-            <div class="absolute top-1/4 left-1/4 w-64 h-64 bg-gray-100 dark:bg-gray-700 rounded-full opacity-20 animate-pulse"></div>
-            <div class="absolute bottom-1/4 right-1/4 w-48 h-48 bg-gray-200 dark:bg-gray-600 rounded-full opacity-15 animate-pulse" style="animation-delay: 2s;"></div>
-            <div class="absolute top-1/2 right-1/3 w-32 h-32 bg-gray-150 dark:bg-gray-500 rounded-full opacity-10 animate-pulse" style="animation-delay: 4s;"></div>
+            <!-- Student Icon -->
+            <div class="floating-icon absolute top-1/4 left-1/6 opacity-5 dark:opacity-10">
+                <svg class="w-32 h-32 text-gray-400 dark:text-gray-600" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 14l9-5-9-5-9 5 9 5z"/>
+                    <path d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"/>
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"/>
+                </svg>
+            </div>
+            <!-- Tutor Icon -->
+            <div class="floating-icon absolute bottom-1/4 right-1/6 opacity-5 dark:opacity-10">
+                <svg class="w-28 h-28 text-gray-400 dark:text-gray-600" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                </svg>
+            </div>
+            <!-- Book Icon -->
+            <div class="floating-icon absolute top-1/3 right-1/4 opacity-5 dark:opacity-10">
+                <svg class="w-24 h-24 text-gray-400 dark:text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C20.832 18.477 19.246 18 17.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+                </svg>
+            </div>
         </div>
         
         <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <div class="mb-8">
-                <h1 class="text-5xl sm:text-6xl lg:text-7xl font-extrabold text-gradient dark:text-white mb-6 leading-tight">
+            <!-- Main Hero Content -->
+            <div class="mb-12">
+                <div class="flex justify-center mb-8">
+                    <div class="flex items-center space-x-4">
+                        <!-- Student Icon -->
+                        <div class="w-16 h-16 bg-gray-100 dark:bg-gray-800 rounded-full flex items-center justify-center">
+                            <svg class="w-8 h-8 text-gray-600 dark:text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
+                            </svg>
+                        </div>
+                        <!-- Connection Line -->
+                        <div class="connection-line w-8 h-0.5 bg-gray-300 dark:bg-gray-600"></div>
+                        <!-- EduConnect Logo/Icon -->
+                        <div class="w-20 h-20 bg-gray-900 dark:bg-white rounded-full flex items-center justify-center">
+                            <svg class="w-10 h-10 text-white dark:text-gray-900" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C20.832 18.477 19.246 18 17.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+                            </svg>
+                        </div>
+                        <!-- Connection Line -->
+                        <div class="connection-line w-8 h-0.5 bg-gray-300 dark:bg-gray-600"></div>
+                        <!-- Tutor Icon -->
+                        <div class="w-16 h-16 bg-gray-100 dark:bg-gray-800 rounded-full flex items-center justify-center">
+                            <svg class="w-8 h-8 text-gray-600 dark:text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+                
+                <h1 class="text-5xl sm:text-6xl lg:text-7xl font-extrabold text-gray-900 dark:text-white mb-6 leading-tight">
                     {{ __('home.hero.title') }}
                 </h1>
                 <div class="w-24 h-1 bg-gray-800 dark:bg-white mx-auto mb-8 rounded-full"></div>
                 <p class="text-xl sm:text-2xl lg:text-3xl text-gray-600 dark:text-gray-300 mb-12 max-w-4xl mx-auto font-light leading-relaxed">
                     {{ __('home.hero.subtitle') }}
                 </p>
+            </div>
+            
+            <!-- User Type Cards -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12 max-w-4xl mx-auto">
+                <!-- Student Card -->
+                <div class="user-type-card group bg-white dark:bg-gray-800 rounded-2xl p-8 subtle-shadow hover:elegant-shadow border border-gray-100 dark:border-gray-700 transition-all duration-300 hover:-translate-y-2">
+                    <div class="w-20 h-20 bg-gray-100 dark:bg-gray-700 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-gray-200 dark:group-hover:bg-gray-600 transition-colors">
+                        <svg class="w-10 h-10 text-gray-600 dark:text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-semibold text-gray-900 dark:text-white mb-4">{{ __('home.hero.for_students') }}</h3>
+                    <p class="text-gray-600 dark:text-gray-300 mb-6 leading-relaxed">{{ __('home.hero.student_description') }}</p>
+                    <a href="{{ route('signup.show') }}" class="inline-flex items-center text-gray-900 dark:text-white font-medium hover:text-gray-700 dark:hover:text-gray-300 transition-colors">
+                        {{ __('home.hero.join_as_student') }}
+                        <svg class="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                        </svg>
+                    </a>
+                </div>
+                
+                <!-- Tutor Card -->
+                <div class="user-type-card group bg-white dark:bg-gray-800 rounded-2xl p-8 subtle-shadow hover:elegant-shadow border border-gray-100 dark:border-gray-700 transition-all duration-300 hover:-translate-y-2">
+                    <div class="w-20 h-20 bg-gray-100 dark:bg-gray-700 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-gray-200 dark:group-hover:bg-gray-600 transition-colors">
+                        <svg class="w-10 h-10 text-gray-600 dark:text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-semibold text-gray-900 dark:text-white mb-4">{{ __('home.hero.for_tutors') }}</h3>
+                    <p class="text-gray-600 dark:text-gray-300 mb-6 leading-relaxed">{{ __('home.hero.tutor_description') }}</p>
+                    <a href="{{ route('signup.show') }}" class="inline-flex items-center text-gray-900 dark:text-white font-medium hover:text-gray-700 dark:hover:text-gray-300 transition-colors">
+                        {{ __('home.hero.join_as_tutor') }}
+                        <svg class="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                        </svg>
+                    </a>
+                </div>
             </div>
             
             <div class="flex flex-col sm:flex-row gap-6 justify-center items-center">

@@ -85,20 +85,43 @@ Route::middleware('auth')->group(function () {
     Route::get('/search-tutor', [SearchTutorController::class, 'index'])->name('search-tutor');
     Route::get('/tutor/{id}', [SearchTutorController::class, 'show'])->name('tutor.show');
 
-    Route::get('/sessions', function () {
-        return view('sessions', ['user' => auth()->user()]);
-    })->name('sessions');
+    // Session routes
+    Route::get('/sessions', [App\Http\Controllers\SessionController::class, 'index'])->name('sessions');
+    Route::get('/sessions/create', [App\Http\Controllers\SessionController::class, 'create'])->name('sessions.create');
+    Route::post('/sessions', [App\Http\Controllers\SessionController::class, 'store'])->name('sessions.store');
+    Route::patch('/sessions/{session}/status', [App\Http\Controllers\SessionController::class, 'updateStatus'])->name('sessions.updateStatus');
+    Route::delete('/sessions/{session}/cancel', [App\Http\Controllers\SessionController::class, 'cancel'])->name('sessions.cancel');
 
-    Route::get('/feedback', function () {
-        return view('feedback', ['user' => auth()->user()]);
-    })->name('feedback');
+    // Session Request routes
+    Route::get('/session-requests', [App\Http\Controllers\SessionRequestController::class, 'index'])->name('session-requests');
+    Route::get('/session-requests/create/{tutor}', [App\Http\Controllers\SessionRequestController::class, 'create'])->name('session-requests.create');
+    Route::post('/session-requests', [App\Http\Controllers\SessionRequestController::class, 'store'])->name('session-requests.store');
+    Route::patch('/session-requests/{sessionRequest}/status', [App\Http\Controllers\SessionRequestController::class, 'updateStatus'])->name('session-requests.updateStatus');
+    Route::delete('/session-requests/{sessionRequest}/cancel', [App\Http\Controllers\SessionRequestController::class, 'cancel'])->name('session-requests.cancel');
+
+    // Feedback routes
+    Route::get('/feedback', [App\Http\Controllers\FeedbackController::class, 'index'])->name('feedback');
+    Route::post('/feedback', [App\Http\Controllers\FeedbackController::class, 'store'])->name('feedback.store');
+    Route::put('/feedback/{feedback}', [App\Http\Controllers\FeedbackController::class, 'update'])->name('feedback.update');
+    Route::delete('/feedback/{feedback}', [App\Http\Controllers\FeedbackController::class, 'destroy'])->name('feedback.destroy');
+    Route::get('/tutor/{tutor}/feedback', [App\Http\Controllers\FeedbackController::class, 'getTutorFeedback'])->name('tutor.feedback');
+
+    // Message/Chat routes
+    Route::get('/conversations', [App\Http\Controllers\MessageController::class, 'getConversations'])->name('conversations');
+    Route::get('/chat/{session}', [App\Http\Controllers\MessageController::class, 'showChat'])->name('chat.show');
+    Route::get('/api/sessions/{session}/messages', [App\Http\Controllers\MessageController::class, 'getSessionMessages'])->name('api.messages.get');
+    Route::post('/api/messages', [App\Http\Controllers\MessageController::class, 'sendMessage'])->name('api.messages.send');
+    Route::post('/api/messages/mark-read', [App\Http\Controllers\MessageController::class, 'markAsRead'])->name('api.messages.markRead');
+
+    // Notification routes
+    Route::get('/notifications', [App\Http\Controllers\NotificationController::class, 'index'])->name('notifications.index');
+    Route::get('/api/notifications/unread-count', [App\Http\Controllers\NotificationController::class, 'getUnreadCount'])->name('api.notifications.unread-count');
+    Route::get('/api/notifications/recent', [App\Http\Controllers\NotificationController::class, 'getRecent'])->name('api.notifications.recent');
+    Route::patch('/api/notifications/{notification}/read', [App\Http\Controllers\NotificationController::class, 'markAsRead'])->name('api.notifications.markAsRead');
+    Route::patch('/api/notifications/mark-all-read', [App\Http\Controllers\NotificationController::class, 'markAllAsRead'])->name('api.notifications.markAllAsRead');
+    Route::delete('/api/notifications/{notification}', [App\Http\Controllers\NotificationController::class, 'destroy'])->name('api.notifications.destroy');
+    Route::delete('/api/notifications/clear-read', [App\Http\Controllers\NotificationController::class, 'clearRead'])->name('api.notifications.clearRead');
 
     // Tutor routes
-    Route::get('/session-requests', function () {
-        return view('session-requests', ['user' => auth()->user()]);
-    })->name('session-requests');
-
-    Route::get('/create-sessions', function () {
-        return view('create-sessions', ['user' => auth()->user()]);
-    })->name('create-sessions');
+    Route::get('/create-sessions', [App\Http\Controllers\SessionController::class, 'create'])->name('create-sessions');
 });

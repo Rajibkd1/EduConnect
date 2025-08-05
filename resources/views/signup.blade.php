@@ -15,9 +15,9 @@
                 @csrf
                 <h1>{{ __('auth.signup.create_account') }}</h1>
                 <span>{{ __('auth.signup.email_verification') }}</span>
-                <input type="email" id="email" name="email" placeholder="{{ __('auth.signup.email_placeholder') }}" required />
+                <input type="email" id="email" name="email" placeholder="{{ __('auth.signup.email_placeholder') }}"
+                    required />
                 <button type="submit">{{ __('auth.signup.send_verification') }}</button>
-                <div id="message" class="message hidden"></div>
             </form>
         </div>
 
@@ -27,11 +27,11 @@
                 @csrf
                 <h1>{{ __('auth.signup.verify_email') }}</h1>
                 <span>{{ __('auth.signup.otp_instruction') }}</span>
-                <input type="text" id="otp" name="otp" class="otp-input" placeholder="{{ __('auth.signup.otp_placeholder') }}" maxlength="6"
-                    required pattern="[0-9]{6}" inputmode="numeric" />
+                <input type="text" id="otp" name="otp" class="otp-input"
+                    placeholder="{{ __('auth.signup.otp_placeholder') }}" maxlength="6" required pattern="[0-9]{6}"
+                    inputmode="numeric" />
                 <button type="submit">{{ __('auth.signup.verify_code') }}</button>
                 <button type="button" id="back-to-email" class="secondary">{{ __('auth.signup.back_to_email') }}</button>
-                <div id="otp-message" class="message hidden"></div>
             </form>
         </div>
 
@@ -41,7 +41,8 @@
                 @csrf
                 <input type="hidden" id="verified-email" name="email" />
                 <h1>{{ __('auth.signup.complete_registration') }}</h1>
-                <input type="text" id="name" name="name" placeholder="{{ __('auth.signup.full_name_placeholder') }}" required />
+                <input type="text" id="name" name="name"
+                    placeholder="{{ __('auth.signup.full_name_placeholder') }}" required />
                 <select id="user_type" name="user_type" required>
                     <option value="">{{ __('auth.signup.select_user_type') }}</option>
                     <option value="student">{{ __('auth.signup.student') }}</option>
@@ -49,7 +50,8 @@
                     <option value="guardian">{{ __('auth.signup.guardian') }}</option>
                 </select>
                 <div class="input-container">
-                    <input type="password" id="password" name="password" placeholder="{{ __('auth.signup.password_placeholder') }}" required />
+                    <input type="password" id="password" name="password"
+                        placeholder="{{ __('auth.signup.password_placeholder') }}" required />
                     <button type="button" class="password-toggle" onclick="togglePassword('password')">
                         <svg id="password-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z">
@@ -74,8 +76,8 @@
                     </button>
                 </div>
                 <button type="submit">{{ __('auth.signup.create_account_btn') }}</button>
-                <button type="button" id="back-to-otp" class="secondary">{{ __('auth.signup.back_to_verification') }}</button>
-                <div id="registration-message" class="message hidden"></div>
+                <button type="button" id="back-to-otp"
+                    class="secondary">{{ __('auth.signup.back_to_verification') }}</button>
             </form>
         </div>
     </div>
@@ -90,9 +92,11 @@
             </div>
             <h1>{{ __('auth.signin.title') }}</h1>
             <span>{{ __('auth.signin.welcome_back') }}</span>
-            <input type="email" name="email" id="login-email" placeholder="{{ __('auth.signin.email_placeholder') }}" required />
+            <input type="email" name="email" id="login-email" placeholder="{{ __('auth.signin.email_placeholder') }}"
+                required />
             <div class="input-container">
-                <input type="password" name="password" id="login-password" placeholder="{{ __('auth.signin.password_placeholder') }}" required />
+                <input type="password" name="password" id="login-password"
+                    placeholder="{{ __('auth.signin.password_placeholder') }}" required />
                 <button type="button" class="password-toggle" onclick="togglePassword('login-password')">
                     <svg id="login-password-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
@@ -104,7 +108,6 @@
             </div>
             <a href="{{ route('password.request') }}">{{ __('auth.signin.forgot_password') }}</a>
             <button type="submit">{{ __('auth.signin.sign_in_btn') }}</button>
-            <div id="login-message" class="message hidden"></div>
             <button type="button" class="mobile-toggle" id="mobileSignUp">{{ __('auth.signin.no_account') }}</button>
         </form>
     </div>

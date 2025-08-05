@@ -27,6 +27,7 @@ return new class extends Migration
             $table->text('qualifications')->nullable();
             $table->integer('experience_years')->nullable();
             $table->decimal('rating', 3, 2)->default(0);
+            $table->integer('total_reviews')->default(0);
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');

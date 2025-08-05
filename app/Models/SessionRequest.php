@@ -6,7 +6,22 @@ use Illuminate\Database\Eloquent\Model;
 
 class SessionRequest extends Model
 {
-    protected $fillable = ['student_id', 'tutor_id', 'subject_id', 'requested_time', 'status', 'message'];
+    protected $fillable = [
+        'student_id',
+        'tutor_id',
+        'subject_id',
+        'requested_time',
+        'duration',
+        'status',
+        'message',
+        'response_message',
+        'responded_at'
+    ];
+
+    protected $casts = [
+        'requested_time' => 'datetime',
+        'responded_at' => 'datetime'
+    ];
 
     public function tutor()
     {

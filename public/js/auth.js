@@ -46,15 +46,119 @@ if (backToOtpBtn) {
     });
 }
 
-// Message display function
+// Modal functionality
+function createModal() {
+    // Remove existing modal if any
+    const existingModal = document.getElementById('auth-modal');
+    if (existingModal) {
+        existingModal.remove();
+    }
+
+    // Create modal structure
+    const modalOverlay = document.createElement('div');
+    modalOverlay.id = 'auth-modal';
+    modalOverlay.className = 'modal-overlay';
+    modalOverlay.innerHTML = `
+        <div class="modal-container">
+            <div class="modal-header">
+                <button class="modal-close" onclick="closeModal()">&times;</button>
+                <div class="modal-icon">
+                    <span class="modal-icon-symbol"></span>
+                </div>
+                <h2 class="modal-title"></h2>
+            </div>
+            <div class="modal-body">
+                <p class="modal-message"></p>
+            </div>
+            <div class="modal-actions">
+                <button class="modal-button primary" onclick="closeModal()">OK</button>
+            </div>
+        </div>
+    `;
+
+    document.body.appendChild(modalOverlay);
+    return modalOverlay;
+}
+
+function showModal(message, isSuccess = true, title = null, autoClose = false) {
+    const modal = createModal();
+    const modalIcon = modal.querySelector('.modal-icon');
+    const modalIconSymbol = modal.querySelector('.modal-icon-symbol');
+    const modalTitle = modal.querySelector('.modal-title');
+    const modalMessage = modal.querySelector('.modal-message');
+
+    // Set icon and styling based on success/error
+    if (isSuccess) {
+        modalIcon.className = 'modal-icon success';
+        modalIconSymbol.innerHTML = '✓';
+        modalTitle.className = 'modal-title success';
+        modalTitle.textContent = title || 'Success!';
+    } else {
+        modalIcon.className = 'modal-icon error';
+        modalIconSymbol.innerHTML = '✕';
+        modalTitle.className = 'modal-title error';
+        modalTitle.textContent = title || 'Error!';
+    }
+
+    modalMessage.textContent = message;
+
+    // Show modal with animation
+    setTimeout(() => {
+        modal.classList.add('show');
+    }, 10);
+
+    // Auto close for success messages
+    if (autoClose && isSuccess) {
+        setTimeout(() => {
+            closeModal();
+        }, 3000);
+    }
+
+    // Add event listeners
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+            closeModal();
+        }
+    });
+
+    // Add keyboard support
+    document.addEventListener('keydown', handleModalKeydown);
+}
+
+function closeModal() {
+    const modal = document.getElementById('auth-modal');
+    if (modal) {
+        modal.classList.remove('show');
+        setTimeout(() => {
+            modal.remove();
+            document.removeEventListener('keydown', handleModalKeydown);
+        }, 300);
+    }
+}
+
+function handleModalKeydown(e) {
+    if (e.key === 'Escape') {
+        closeModal();
+    }
+}
+
+// Updated message display function to use modals
 function showMessage(elementId, message, isSuccess = true) {
+    // Use modal instead of inline message
+    showModal(message, isSuccess, null, isSuccess);
+    
+    // Keep legacy functionality for backward compatibility
     const messageDiv = document.getElementById(elementId);
     if (messageDiv) {
         messageDiv.textContent = message;
         messageDiv.className = `message ${isSuccess ? "success" : "error"}`;
-        messageDiv.classList.remove("hidden");
+        messageDiv.classList.add("hidden"); // Hide the inline message since we're using modal
     }
 }
+
+// Make functions globally available
+window.showModal = showModal;
+window.closeModal = closeModal;
 
 // Get CSRF token
 function getCSRFToken() {

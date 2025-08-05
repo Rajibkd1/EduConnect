@@ -1,16 +1,129 @@
 .hero-pattern {
-    background-image: 
-        radial-gradient(circle at 25% 25%, rgba(0,0,0,0.02) 1px, transparent 1px),
-        radial-gradient(circle at 75% 75%, rgba(0,0,0,0.02) 1px, transparent 1px);
-    background-size: 60px 60px;
+    background-image: radial-gradient(
+            circle at 25% 25%,
+            rgba(0, 0, 0, 0.01) 1px,
+            transparent 1px
+        ),
+        radial-gradient(
+            circle at 75% 75%,
+            rgba(0, 0, 0, 0.01) 1px,
+            transparent 1px
+        );
+    background-size: 80px 80px;
 }
 
 /* Dark mode hero pattern */
 .dark .hero-pattern {
-    background-image: 
-        radial-gradient(circle at 25% 25%, rgba(255,255,255,0.03) 1px, transparent 1px),
-        radial-gradient(circle at 75% 75%, rgba(255,255,255,0.03) 1px, transparent 1px);
-    background-size: 60px 60px;
+    background-image: radial-gradient(
+            circle at 25% 25%,
+            rgba(255, 255, 255, 0.02) 1px,
+            transparent 1px
+        ),
+        radial-gradient(
+            circle at 75% 75%,
+            rgba(255, 255, 255, 0.02) 1px,
+            transparent 1px
+        );
+    background-size: 80px 80px;
+}
+
+/* Enhanced floating icons animation */
+.floating-icon {
+    animation: float 6s ease-in-out infinite;
+}
+
+.floating-icon:nth-child(2) {
+    animation-delay: 2s;
+}
+
+.floating-icon:nth-child(3) {
+    animation-delay: 4s;
+}
+
+@keyframes float {
+    0%,
+    100% {
+        transform: translateY(0px) rotate(0deg);
+    }
+    50% {
+        transform: translateY(-20px) rotate(5deg);
+    }
+}
+
+/* Connection line animation */
+.connection-line {
+    position: relative;
+    overflow: hidden;
+}
+
+.connection-line::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: -100%;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(107, 114, 128, 0.5),
+        transparent
+    );
+    animation: flow 3s ease-in-out infinite;
+}
+
+.dark .connection-line::after {
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(156, 163, 175, 0.5),
+        transparent
+    );
+}
+
+@keyframes flow {
+    0% {
+        left: -100%;
+    }
+    100% {
+        left: 100%;
+    }
+}
+
+/* User type cards hover effects */
+.user-type-card {
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.user-type-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.1),
+        transparent
+    );
+    transition: left 0.6s;
+}
+
+.user-type-card:hover::before {
+    left: 100%;
+}
+
+.dark .user-type-card::before {
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.05),
+        transparent
+    );
 }
 
 .feature-card {
@@ -49,21 +162,25 @@
 }
 
 .subtle-shadow {
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05),
+        0 2px 4px -1px rgba(0, 0, 0, 0.03);
 }
 
 /* Dark mode subtle shadow */
 .dark .subtle-shadow {
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2), 0 2px 4px -1px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2),
+        0 2px 4px -1px rgba(0, 0, 0, 0.1);
 }
 
 .elegant-shadow {
-    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.08), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.08),
+        0 10px 10px -5px rgba(0, 0, 0, 0.04);
 }
 
 /* Dark mode elegant shadow */
 .dark .elegant-shadow {
-    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3), 0 10px 10px -5px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3),
+        0 10px 10px -5px rgba(0, 0, 0, 0.2);
 }
 
 /* Additional dark mode improvements */
@@ -72,7 +189,12 @@
 }
 
 /* Ensure proper text contrast in dark mode */
-.dark h1, .dark h2, .dark h3, .dark h4, .dark h5, .dark h6 {
+.dark h1,
+.dark h2,
+.dark h3,
+.dark h4,
+.dark h5,
+.dark h6 {
     color: #ffffff;
 }
 

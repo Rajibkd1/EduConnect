@@ -20,7 +20,8 @@ class Tutor extends Model
         'bio', 
         'qualifications', 
         'experience_years', 
-        'rating'
+        'rating',
+        'total_reviews'
     ];
 
     protected $casts = [

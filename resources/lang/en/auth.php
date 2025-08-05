@@ -35,7 +35,8 @@ return [
         'password_placeholder' => 'Password',
         'forgot_password' => 'Forgot your password?',
         'sign_in_btn' => 'Sign In',
-        'no_account' => "Don't have an account? Sign Up",
+        'no_account' => "Don't have an account?",
+        'create_account' => 'Sign Up',
     ],
 
     'overlay' => [
@@ -45,6 +46,8 @@ return [
         'join_title' => 'Join EduConnect!',
         'join_text' => 'Start your educational journey with us. Create an account to get started.',
         'sign_up_btn' => 'Sign Up',
+        'welcome_title' => 'Welcome to EduConnect!',
+        'welcome_text' => 'Connect with tutors, learn new skills, and grow your knowledge with our educational platform.',
     ],
 
     'password_reset' => [

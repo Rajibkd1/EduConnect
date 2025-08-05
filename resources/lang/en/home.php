@@ -6,6 +6,12 @@ return [
         'subtitle' => 'Your gateway to personalized education and meaningful connections',
         'start_learning' => 'Start Learning',
         'learn_more' => 'Learn More',
+        'for_students' => 'For Students',
+        'student_description' => 'Find qualified tutors, schedule personalized sessions, and track your learning progress with our comprehensive student platform.',
+        'join_as_student' => 'Join as Student',
+        'for_tutors' => 'For Tutors',
+        'tutor_description' => 'Share your expertise, manage your teaching schedule, and connect with students who need your guidance and knowledge.',
+        'join_as_tutor' => 'Join as Tutor',
     ],
     
     'features' => [
