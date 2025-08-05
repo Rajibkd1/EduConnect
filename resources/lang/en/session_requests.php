@@ -5,6 +5,28 @@ return [
     'session_requests' => 'Session Requests',
     'manage_requests' => 'Manage incoming tutoring requests',
     
+    'create' => [
+        'title' => 'Request Session',
+        'subtitle' => 'Request a tutoring session with :tutor',
+        'form_title' => 'Session Request Details',
+        'subject' => 'Subject',
+        'select_subject' => 'Select a subject',
+        'preferred_datetime' => 'Preferred Date & Time',
+        'duration' => 'Duration',
+        'select_duration' => 'Select duration',
+        'minutes' => 'minutes',
+        'hour' => 'hour',
+        'hours' => 'hours',
+        'message' => 'Message (Optional)',
+        'message_placeholder' => 'Tell the tutor about your learning goals, specific topics you need help with, or any other relevant information...',
+        'message_limit' => 'Maximum 500 characters',
+        'cancel' => 'Cancel',
+        'send_request' => 'Send Request',
+        'errors' => [
+            'title' => 'Please fix the following errors:',
+        ],
+    ],
+    
     'stats' => [
         'pending' => 'Pending',
         'accepted' => 'Accepted',
@@ -40,5 +62,20 @@ return [
         'view_profile' => 'View Profile',
         'decline' => 'Decline',
         'accept_request' => 'Accept Request',
+    ],
+    
+    'success' => [
+        'request_sent' => 'Session request sent successfully!',
+        'request_approved' => 'Session request approved successfully!',
+        'request_rejected' => 'Session request rejected successfully!',
+        'request_cancelled' => 'Session request cancelled successfully!',
+    ],
+    
+    'errors' => [
+        'not_authorized' => 'You are not authorized to perform this action.',
+        'duplicate_request' => 'You already have a pending request for this tutor and subject.',
+        'request_failed' => 'Failed to send session request. Please try again.',
+        'update_failed' => 'Failed to update session request. Please try again.',
+        'cannot_cancel' => 'Cannot cancel this request as it has already been processed.',
     ],
 ];

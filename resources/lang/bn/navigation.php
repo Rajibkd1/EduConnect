@@ -4,6 +4,8 @@ return [
     'dashboard' => 'ড্যাশবোর্ড',
     'profile' => 'প্রোফাইল',
     'search_tutor' => 'শিক্ষক খুঁজুন',
+    'messages' => 'বার্তা',
+    'favorites' => 'আমার পছন্দের',
     'sessions' => 'সেশন',
     'feedback' => 'মতামত',
     'session_requests' => 'সেশন অনুরোধ',

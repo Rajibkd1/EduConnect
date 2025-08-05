@@ -89,7 +89,12 @@
                                 </path>
                             </svg>
                         </div>
-                        <span>{{ $item['name'] }}</span>
+                        <span class="flex-1">{{ $item['name'] }}</span>
+                        @if(isset($item['badge']) && $item['badge'] > 0)
+                            <span class="inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-white bg-red-600 rounded-full">
+                                {{ $item['badge'] > 99 ? '99+' : $item['badge'] }}
+                            </span>
+                        @endif
                     </a>
                 @endforeach
             </nav>
@@ -236,7 +241,12 @@
                                 </path>
                             </svg>
                         </div>
-                        <span>{{ $item['name'] }}</span>
+                        <span class="flex-1">{{ $item['name'] }}</span>
+                        @if(isset($item['badge']) && $item['badge'] > 0)
+                            <span class="inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-white bg-red-600 rounded-full">
+                                {{ $item['badge'] > 99 ? '99+' : $item['badge'] }}
+                            </span>
+                        @endif
                     </a>
                 @endforeach
             </nav>

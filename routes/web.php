@@ -113,6 +113,19 @@ Route::middleware('auth')->group(function () {
     Route::post('/api/messages', [App\Http\Controllers\MessageController::class, 'sendMessage'])->name('api.messages.send');
     Route::post('/api/messages/mark-read', [App\Http\Controllers\MessageController::class, 'markAsRead'])->name('api.messages.markRead');
 
+    // Direct messaging routes
+    Route::get('/messages', [App\Http\Controllers\MessageController::class, 'getDirectConversations'])->name('messages');
+    Route::get('/direct-chat/{user}', [App\Http\Controllers\MessageController::class, 'showDirectChat'])->name('direct-chat');
+    Route::get('/api/direct-messages/{user}', [App\Http\Controllers\MessageController::class, 'getDirectMessages'])->name('api.direct-messages.get');
+    Route::post('/api/direct-messages', [App\Http\Controllers\MessageController::class, 'sendDirectMessage'])->name('api.direct-messages.send');
+
+    // Favorites routes
+    Route::get('/favorites', [App\Http\Controllers\FavoriteController::class, 'index'])->name('favorites');
+    Route::post('/api/favorites/toggle', [App\Http\Controllers\FavoriteController::class, 'toggle'])->name('api.favorites.toggle');
+    Route::get('/api/favorites/status/{tutor}', [App\Http\Controllers\FavoriteController::class, 'checkStatus'])->name('api.favorites.status');
+    Route::get('/api/favorites/count', [App\Http\Controllers\FavoriteController::class, 'getCount'])->name('api.favorites.count');
+    Route::delete('/favorites/{tutor}', [App\Http\Controllers\FavoriteController::class, 'destroy'])->name('favorites.destroy');
+
     // Notification routes
     Route::get('/notifications', [App\Http\Controllers\NotificationController::class, 'index'])->name('notifications.index');
     Route::get('/api/notifications/unread-count', [App\Http\Controllers\NotificationController::class, 'getUnreadCount'])->name('api.notifications.unread-count');

@@ -1,44 +1,26 @@
 <?php
 
 return [
-    'title' => 'সেশন অনুরোধ - EduConnect',
     'session_requests' => 'সেশন অনুরোধসমূহ',
-    'manage_requests' => 'আগত টিউটরিং অনুরোধসমূহ পরিচালনা করুন',
-    
-    'stats' => [
-        'pending' => 'অপেক্ষমাণ',
-        'accepted' => 'গৃহীত',
-        'declined' => 'প্রত্যাখ্যাত',
-        'total_requests' => 'মোট অনুরোধ',
-    ],
-    
-    'tabs' => [
-        'pending_requests' => 'অপেক্ষমাণ অনুরোধসমূহ',
-        'accepted' => 'গৃহীত',
-        'all_requests' => 'সকল অনুরোধ',
-    ],
-    
-    'empty_state' => [
-        'title' => 'কোনো সেশন অনুরোধ নেই',
-        'description' => 'আপনি এখনো কোনো টিউটরিং অনুরোধ পাননি।',
-        'update_profile' => 'প্রোফাইল আপডেট করুন',
-    ],
-    
-    'request_card' => [
-        'mathematics_request' => 'গণিত টিউটরিং অনুরোধ',
-        'from_student' => ':student থেকে',
-        'requested_time' => ':time আগে অনুরোধ করা হয়েছে',
-        'pending_status' => 'অপেক্ষমাণ',
-        'subject' => 'বিষয়: :subject',
-        'level' => 'স্তর: :level',
-        'duration' => 'সময়কাল: :duration',
-        'preferred_date' => 'পছন্দের তারিখ: :date',
-        'time' => 'সময়: :time',
-        'rate' => 'হার: :rate',
-        'student_message' => 'শিক্ষার্থীর বার্তা:',
-        'sample_message' => 'হ্যালো! আমি দ্বিঘাত সমীকরণ নিয়ে সমস্যায় আছি এবং আমার আসন্ন পরীক্ষার জন্য সাহায্য প্রয়োজন। আমি এই সপ্তাহের বেশিরভাগ বিকেলে উপলব্ধ। ধন্যবাদ!',
-        'view_profile' => 'প্রোফাইল দেখুন',
-        'decline' => 'প্রত্যাখ্যান',
-        'accept_request' => 'অনুরোধ গ্রহণ করুন',
-    ],
+    'manage_requests' => 'আপনার টিউটরিং অনুরোধগুলি পরিচালনা করুন',
+    'create' => [
+        'title' => 'সেশনের অনুরোধ করুন',
+        'subtitle' => 'আপনার পছন্দের সময় এবং বিষয়ের জন্য একটি টিউটরিং সেশনের অনুরোধ করুন',
+        'tutor_info' => 'শিক্ষকের তথ্য',
+        'session_details' => 'সেশনের বিবরণ',
+        'subject' => 'বিষয়',
+        'select_subject' => 'একটি বিষয় নির্বাচন করুন',
+        'session_type' => 'সেশনের ধরন',
+        'online' => 'অনলাইন',
+        'in_person' => 'সরাসরি',
+        'preferred_date' => 'পছন্দের তারিখ',
+        'preferred_time' => 'পছন্দের সময়',
+        'duration' => 'সময়কাল (মিনিট)',
+        'message' => 'অতিরিক্ত বার্তা',
+        'message_placeholder' => 'আপনার প্রয়োজনীয়তা বা বিশেষ অনুরোধ সম্পর্কে বিস্তারিত লিখুন...',
+        'submit' => 'অনুরোধ পাঠান',
+        'cancel' => 'বাতিল',
+        'success' => 'আপনার সেশনের অনুরোধ সফলভাবে পাঠানো হয়েছে!',
+        'error' => 'অনুরোধ পাঠাতে সমস্যা হয়েছে। আবার চেষ্টা করুন।'
+    ]
 ];

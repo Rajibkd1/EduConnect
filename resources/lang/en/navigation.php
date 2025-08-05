@@ -4,6 +4,8 @@ return [
     'dashboard' => 'Dashboard',
     'profile' => 'Profile',
     'search_tutor' => 'Search Tutor',
+    'messages' => 'Messages',
+    'favorites' => 'My Favorites',
     'sessions' => 'Sessions',
     'feedback' => 'Feedback',
     'session_requests' => 'Session Requests',
